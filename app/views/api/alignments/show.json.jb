@@ -1,0 +1,12 @@
+# json.partial! @alignment, partial: "alignment", as: :alignment
+
+{
+  message: "You wanna see *this* alignment?",
+  id: @alignment.id,
+  # index: @alignment.index,
+  name: @alignment.name,
+  abbreviation: @alignment.abbreviation,
+  desc: @alignment.desc,
+  url: @alignment.url,
+# image_url: @alignment.image_url,
+}

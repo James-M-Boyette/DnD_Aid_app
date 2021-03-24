@@ -1,0 +1,22 @@
+@alignments.map do |alignment|
+  {
+    # message: "Which one of these would you like to know more about?",
+    # index: alignment.index,
+    id: alignment.id,
+    name: alignment.name,
+    desc: alignment.desc,
+    url: alignment.url,
+  # image_url: alignment.image_url,
+  }
+end
+
+# json.array! @alignments, partial: "alignment", as: :alignment
+
+@swords.map do |sword|
+  {
+    id: sword.id,
+    name: sword.name,
+    desc: sword.desc,
+    url: sword.url,
+  }
+end
