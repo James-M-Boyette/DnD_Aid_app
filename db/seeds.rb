@@ -1,62 +1,58 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-Alignment.create!([
-{
-  name: "Chaotic Evil",
-  abbreviation: "CE",
-  desc: "Chaotic evil (CE) creatures act with arbitrary violence, spurred by their greed, hatred, or bloodlust. Demons, red dragons, and orcs are chaotic evil.",
-  url: ""
-},
-{
-  name: "Neutral Evil",
-  abbreviation: "NE",
-  desc: "Neutral evil (NE) is the alignment of those who do whatever they can get away with, without compassion or qualms. Many drow, some cloud giants, and goblins are neutral evil."
-  url: ""
-},
-{
-  name: "Lawful Evil",
-  abbreviation: "LE",
-  desc: "Lawful evil (LE) creatures methodically take what they want, within the limits of a code of tradition, loyalty, or order. Devils, blue dragons, and hobgoblins are lawful evil."
-  url: ""
-},
-{
-  name: "Chaotic Neutral",
-  abbreviation: "CN",
-  desc: "Chaotic neutral (CN) creatures follow their whims, holding their personal freedom above all else. Many barbarians and rogues, and some bards, are chaotic neutral."
-  url: ""
-},
-{
-  name: "Neutral",
-  abbreviation: "N",
-  desc: "Neutral (N) is the alignment of those who prefer to steer clear of moral questions and don’t take sides, doing what seems best at the time. Lizardfolk, most druids, and many humans ae}neutral.",
-  url: ""
-},
-{
-  name: "Lawful Neutral",
-  abbreviation: "LN",
-  desc: "Lawful neutral (LN) individuals act in accordance with law, tradition, or personal codes. Many monks and some wizards are lawful neutral.",
-  url: ""
-},
-{
-  name: "Chaotic Good",
-  abbreviation: "CG",
-  desc: "Chaotic good (CG) creatures act as their conscience directs, with little regard for what others expect. Copper dragons, many elves, and unicorns are chaotic good."
-  url: ""
-},
-{
-  name: "Neutral Good",
-  abbreviation: "NG",
-  desc: "Neutral good (NG) folk do the best they can to help others according to their needs. Many celestials, some cloud giants, and most gnomes are neutral good.",
-  url: ""
-},
-{
-  name: "Lawful Good",
-  abbreviation: "LG",
-  desc: "Lawful good (LG) creatures can be counted on to do the right thing as expected by society. Gold dragons, paladins, and most dwarves are lawful good.",
-  url: ""
-},
-])
+require "http"
+
+# Alignment Table rip
+
+# @web_resp = HTTP.get("https://www.dnd5eapi.co/api/alignments/").to_s
+
+# dnd_category = JSON.parse(@web_resp)
+# entries = []
+
+# dnd_category["results"].each do |entry|
+#   @web_resp2 = HTTP.get("https://www.dnd5eapi.co/api/alignments/" + entry["index"]).to_s
+#   entries << JSON.parse(@web_resp2)
+# end
+
+# entries.each do |entry|
+#   puts entry
+#   Alignment.create!(
+#     name: entry["name"],
+#     abbreviation: entry["abbreviation"],
+#     desc: entry["desc"],
+#     url: entry["url"],
+#   )
+# end
+
+# Languages Table rip
+
+@web_resp = HTTP.get("https://www.dnd5eapi.co/api/languages/").to_s
+dnd_category = JSON.parse(@web_resp)
+entries = []
+
+dnd_category["results"].each do |entry|
+  @web_resp2 = HTTP.get("https://www.dnd5eapi.co/api/languages/" + entry["index"]).to_s
+  entries << JSON.parse(@web_resp2)
+end
+# puts "***** Web requests ran successfully - the following entries are stored in our hash:"
+# puts entries
+# puts entries.class
+
+entries.each do |entry|
+  # p entry
+  i = 0
+  typical_speakers = ""
+  while i < entry["typical_speakers"].length
+    typical_speakers << entry["typical_speakers"][i]
+    i += 1
+  end
+  p typical_speakers
+  # p entry["typical_speakers"].length
+  # p entry["typical_speakers"][0].length
+  # Language.create!(
+  #   name: entry["name"],
+  #   rarity: entry["rarity"],
+  #   typcial_speakers: entry["typcial_speakers"],
+  #   desc: entry["desc"],
+  #   script: entry["script"],
+  # )
+end
+p typical_speakers

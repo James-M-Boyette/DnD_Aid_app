@@ -11,12 +11,3 @@
 end
 
 # json.array! @alignments, partial: "alignment", as: :alignment
-
-@swords.map do |sword|
-  {
-    id: sword.id,
-    name: sword.name,
-    desc: sword.desc,
-    url: sword.url,
-  }
-end
