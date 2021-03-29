@@ -1,3 +1,6 @@
+#this is the back-up file for my seeds logic
+#MUST COPY SEED LOGIC TO HERE BEFORE RUNNING DB-T0-SEED BACKUP
+
 require "http"
 
 ## Alignment Table rip
@@ -25,5 +28,29 @@ entries.each do |entry|
     abbreviation: entry["abbreviation"],
     desc: entry["desc"],
     url: entry["url"],
+  )
+end
+
+## Language Table Rip
+
+@web_resp = HTTP.get("https://www.dnd5eapi.co/api/languages/").to_s
+dnd_category = JSON.parse(@web_resp)
+entries = []
+
+dnd_category["results"].each do |entry|
+  @web_resp2 = HTTP.get("https://www.dnd5eapi.co/api/languages/" + entry["index"]).to_s
+  entries << JSON.parse(@web_resp2)
+end
+
+puts "***** Web requests ran successfully - the following entries are stored in our hash:"
+
+typical_speakers = ""
+entries.each do |entry|
+  Language.create!(
+    name: entry["name"],
+    rarity: entry["type"],
+    typcial_speakers: entry["typical_speakers"].join(", "),
+    desc: entry["desc"],
+    script: entry["script"],
   )
 end
