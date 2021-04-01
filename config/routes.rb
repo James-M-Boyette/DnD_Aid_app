@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   # EXAMPLE JSON ROUTE WITH API NAMESPACE
   namespace :api do
     get "/alignments" => "alignments#index"
-    get "/alignments" => "alignments#index"
     post "/alignments" => "alignments#create"
     get "/alignments/:id" => "alignments#show"
     patch "/alignments/:id" => "alignments#update"

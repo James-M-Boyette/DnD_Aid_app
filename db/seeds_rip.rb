@@ -3,7 +3,7 @@
 
 require "http"
 
-## Alignment Table rip
+## !! Alignment Table rip !! ##
 
 ## Dump the JSON form of the end-point route's hash into an instanced var
 @web_resp = HTTP.get("https://www.dnd5eapi.co/api/alignments/").to_s
@@ -31,7 +31,7 @@ entries.each do |entry|
   )
 end
 
-## Language Table Rip
+## !! Language Table Rip !! ##
 
 @web_resp = HTTP.get("https://www.dnd5eapi.co/api/languages/").to_s
 dnd_category = JSON.parse(@web_resp)

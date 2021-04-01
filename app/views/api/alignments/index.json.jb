@@ -1,11 +1,11 @@
 @alignments.map do |alignment|
   {
-    # message: "Which one of these would you like to know more about?",
-    # index: alignment.index,
-    id: alignment.id,
-    name: alignment.name,
-    desc: alignment.desc,
-    url: alignment.url,
+    message: "Which one of these would you like to know more about?",
+  # index: alignment.index,
+  # id: alignment.id,
+  # name: alignment.name,
+  # desc: alignment.desc,
+  # url: alignment.url,
   # image_url: alignment.image_url,
   }
 end
