@@ -1,0 +1,13 @@
+@languages.map do |language|
+  {
+    message: "Which one of these would you like to know more about?",
+    id: language.id,
+    name: language.name,
+    desc: language.desc,
+    rarity: language.rarity,
+    typical_speakers: language.speakers,
+    script: language.script,
+  }
+end
+
+# json.array! @alignments, partial: "alignment", as: :alignment

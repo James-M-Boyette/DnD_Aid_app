@@ -4,7 +4,7 @@ class CreateAlignments < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :abbreviation
       t.string :desc
-      t.string :url
+      t.string :imgurl
 
       t.timestamps
     end

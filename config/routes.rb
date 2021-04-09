@@ -9,5 +9,7 @@ Rails.application.routes.draw do
     get "/alignments/:id" => "alignments#show"
     patch "/alignments/:id" => "alignments#update"
     delete "/alignments/:id" => "alignments#destroy"
+
+    get "/languages" => "languages#index"
   end
 end

@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_08_235918) do
+ActiveRecord::Schema.define(version: 2021_03_29_001229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
   create_table "alignments", force: :cascade do |t|
     t.string "name"
     t.string "abbreviation"
@@ -24,50 +23,13 @@ ActiveRecord::Schema.define(version: 2021_04_08_235918) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "characters", force: :cascade do |t|
-    t.string "userid"
-    t.string "cfirstname"
-    t.string "cmiddlename"
-    t.string "clastname"
-    t.string "raceid"
-    t.string "classid"
-    t.string "alignmentid"
-    t.string "languageid"
-    t.string "inventoryid"
-    t.integer "strength"
-    t.integer "dexterity"
-    t.integer "constitution"
-    t.integer "intelligence"
-    t.integer "wisdom"
-    t.integer "charisma"
-    t.integer "healthmax"
-    t.integer "healthcurrent"
-    t.integer "healthtemp"
-    t.integer "speed"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "languages", force: :cascade do |t|
     t.string "name"
     t.string "desc"
     t.string "rarity"
-    t.string "speakers"
+    t.string "typcial_speakers"
     t.string "script"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
-
-  create_table "users", force: :cascade do |t|
-    t.string "userid"
-    t.string "email"
-    t.string "ufirstname"
-    t.string "ulastname"
-    t.string "username"
-    t.string "password"
-    t.string "characterid"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
 end
