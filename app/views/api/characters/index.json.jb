@@ -1,0 +1,25 @@
+@characters.map do |character|
+  {
+    # message: "Which one of these would you like to know more about?",
+    id: character.id,
+    userid: character.userid,
+    cfirstname: character.cfirstname,
+    cmiddlename: character.cmiddlename,
+    clastname: character.clastname,
+    raceid: character.raceid,
+    classid: character.classid,
+    alignmentid: character.alignmentid,
+    languageid: character.languageid,
+    inventoryid: character.inventoryid,
+    strength: character.strength,
+    dexterity: character.dexterity,
+    constitution: character.constitution,
+    intelligence: character.intelligence,
+    wisdom: character.wisdom,
+    charisma: character.charisma,
+    healthmax: character.healthmax,
+    healthcurrent: character.healthcurrent,
+    healthtemp: character.healthtemp,
+    speed: character.speed,
+  }
+end

@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 
+# Test Character: Character.new({userid:"u1", cfirstname:"Igor", cmiddlename:"the", clastname:"Strange", raceid:"r1", classid:"c1", alignmentid:"a1", inventoryid:"i1", strength:10, dexterity:17, constitution:14, intelligence:17, wisdom:15, charisma:10, healthmax:14, healthcurrent:14, healthtemp:0, speed:0})
+
 Alignment.create!([
   {name: "Chaotic Evil", abbreviation: "CE", desc: "Chaotic evil (CE) creatures act with arbitrary violence, spurred by their greed, hatred, or bloodlust. Demons, red dragons, and orcs are chaotic evil.", imgurl: ""},
   {name: "Neutral Evil", abbreviation: "NE", desc: "Neutral evil (NE) is the alignment of those who do whatever they can get away with, without compassion or qualms. Many drow, some cloud giants, and goblins are neutral evil.", imgurl: ""},

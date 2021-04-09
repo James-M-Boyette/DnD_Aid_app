@@ -11,5 +11,11 @@ Rails.application.routes.draw do
     delete "/alignments/:id" => "alignments#destroy"
 
     get "/languages" => "languages#index"
+
+    get "/characters" => "characters#index"
+    post "/characters" => "characters#create"
+    get "/characters/:id" => "characters#show"
+    patch "/characters/:id" => "characters#update"
+    delete "/characters/:id" => "characters#destroy"
   end
 end
