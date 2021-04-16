@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  def create
+  # def create
     # password -> what user types in
     # password_digest, after hashing, saved in db
 
@@ -14,5 +14,5 @@ class Api::UsersController < ApplicationController
     # else
     #   render json: { errors: user.errors.full_messages }, status: :bad_request
     # end
-  end
+  # end
 end

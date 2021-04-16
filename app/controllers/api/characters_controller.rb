@@ -1,4 +1,7 @@
 class Api::CharactersController < ApplicationController
+  # skip_before_action :verify_authenticity_token
+  # This was due to commenting-out the second line of application_controller o.O
+
   def index
     # render json: "message: Chaotic Evil is bad"
     @characters = Character.all
@@ -34,7 +37,7 @@ class Api::CharactersController < ApplicationController
     )
 
     if @character.save
-      render "show.json.jbuilder"
+      render "show.json.jb"
     else
       render json: { errors: @character.errors.full_messages }, status: :unprocessable_entity
     end
@@ -43,6 +46,25 @@ class Api::CharactersController < ApplicationController
   def update
     @character = Character.find(params[:id])
 
+    userid
+    cfirstname
+    cmiddlename
+    clastname
+    raceid
+    classid
+    alignmentid
+    languageid
+    inventoryid
+    strength
+    dexterity
+    constitution
+    intelligence
+    wisdom
+    charisma
+    healthmax
+    healthcurrent
+    healthtemp
+    speed
     @character.name = params[:name] || @character.name
     @character.price = params[:price] || @character.price
     @character.description = params[:description] || @character.description
