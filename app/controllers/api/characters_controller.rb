@@ -12,16 +12,31 @@ class Api::CharactersController < ApplicationController
 
   def create
     @character = Character.new(
-                           name: params[:name],
-                           price: params[:price],
-                           description: params[:description],
-                           image_url: params[:image_url]
-                          )
+      userid: params[:userid],
+      cfirstname: params[:cfirstname],
+      cmiddlename: params[:cmiddlename],
+      clastname: params[:clastname],
+      raceid: params[:raceid],
+      classid: params[:classid],
+      alignmentid: params[:alignmentid],
+      languageid: params[:languageid],
+      inventoryid: params[:inventoryid],
+      strength: params[:strength],
+      dexterity: params[:dexterity],
+      constitution: params[:constitution],
+      intelligence: params[:intelligence],
+      wisdom: params[:wisdom],
+      charisma: params[:charisma],
+      healthmax: params[:healthmax],
+      healthcurrent: params[:healthcurrent],
+      healthtemp: params[:healthtemp],
+      speed: params[:speed],
+    )
 
     if @character.save
-      render 'show.json.jbuilder'
+      render "show.json.jbuilder"
     else
-      render json: {errors: @character.errors.full_messages}, status: :unprocessable_entity
+      render json: { errors: @character.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -34,15 +49,15 @@ class Api::CharactersController < ApplicationController
     @character.image_url = params[:image_url] || @character.image_url
 
     if @character.save
-      render 'show.json.jbuilder'
+      render "show.json.jbuilder"
     else
-      render json: {errors: @character.errors.full_messages}, status: :unprocessable_entity
+      render json: { errors: @character.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   def destroy
     character = Character.find(params[:id])
     character.destroy
-    render json: {message: "Successfully Destroyed Product"}
+    render json: { message: "Successfully Destroyed Product" }
   end
 end

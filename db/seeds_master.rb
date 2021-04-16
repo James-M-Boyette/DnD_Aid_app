@@ -5,6 +5,28 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 
+# Character Schema (use this for character CRUD testing)
+# userid
+# cfirstname
+# cmiddlename
+# clastname
+# raceid
+# classid
+# alignmentid
+# languageid
+# inventoryid
+# strength
+# dexterity
+# constitution
+# intelligence
+# wisdom
+# charisma
+# healthmax
+# healthcurrent
+# healthtemp
+# speed
+# c = Character.new(userid:"u2", cfirstname:"Bob", cmiddlename:"the", clastname:"Builder", raceid:"r2", classid"c2", alignmentid:"a2", languageid:"l2", inventoryid:"i2", strength:15, dexterity:16, constitution:8, intelligence:12, wisdom:14, charisma:15, healthmax:12, healthcurrent:12, healthtemp:0, speed:0)
+
 # Test Character: Character.new({userid:"u1", cfirstname:"Igor", cmiddlename:"the", clastname:"Strange", raceid:"r1", classid:"c1", alignmentid:"a1", inventoryid:"i1", strength:10, dexterity:17, constitution:14, intelligence:17, wisdom:15, charisma:10, healthmax:14, healthcurrent:14, healthtemp:0, speed:0})
 
 Alignment.create!([
@@ -37,3 +59,4 @@ Language.create!([
   {name: "Sylvan", desc: "nil", rarity: "Exotic", speakers: "Fey creatures", script: "Elvish"},
   {name: "Undercommon", desc: "nil", rarity: "Exotic", speakers: "Underdark traders", script: "Elvish"}
 ])
+
