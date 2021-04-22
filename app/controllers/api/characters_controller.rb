@@ -43,6 +43,7 @@ class Api::CharactersController < ApplicationController
     end
   end
 
+  # MAKE SURE TO NOT PUT COMMAS FOR THE UPDATE ... IT'S NOT AN OBJECT n BECAUSE "REASONS" VARIABLES CREATED OUTSIDE OF OBJECTS DON'T NEED THIS SEPERATION ... IS THIS RUBY-SPECIFIC???
   def update
     @character = Character.find(params[:id])
 
