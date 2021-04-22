@@ -1,4 +1,4 @@
-# README || DnD_Aid_app
+# README || DnD_Aid_app (Rails Back-end)
 
 ## This is the backend to my capstone project for Actualize:
 > (Please note that this is a work-in-progress, and all MVPs + Nice-to-haves will be finalized and delivered for our presentations on May 5th)
