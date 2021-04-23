@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2021_04_23_005019) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
-
+  # May not need user ID
   create_table "users", force: :cascade do |t|
     t.string "ufirstname"
     t.string "ulastname"
@@ -68,5 +68,4 @@ ActiveRecord::Schema.define(version: 2021_04_23_005019) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
-
 end

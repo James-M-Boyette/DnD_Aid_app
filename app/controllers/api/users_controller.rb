@@ -15,6 +15,7 @@ class Api::UsersController < ApplicationController
     # password_digest, after hashing, saved in db
 
     @user = User.new(
+      # May not need user ID
       userid: params[:userid],
       email: params[:email],
       ufirstname: params[:ufirstname],

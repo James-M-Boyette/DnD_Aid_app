@@ -2,9 +2,15 @@
 
 {
   message: "Here's what we know about this user:",
+
   id: @user.id,
-  name: @user.name,
-  abbreviation: @user.abbreviation,
-  desc: @user.desc,
-  imgurl: @user.imgurl,
+  # May not need user ID
+  userid: @user.userid,
+  email: @user.email,
+  ufirstname: @user.ufirstname,
+  ulastname: @user.ulastname,
+  username: @user.username,
+  password: @user.password,
+  password_confirmation: @user.password_confirmation,
+  characterid: @user.characterid,
 }
