@@ -1,0 +1,15 @@
+@users.map do |user|
+  {
+    # message: "Which one of these would you like to know more about?",
+    userid: user.userid,
+    email: user.email,
+    ufirstname: user.ufirstname,
+    ulastname: user.ulastname,
+    username: user.username,
+    password: user.password,
+    password_confirmation: user.password_confirmation,
+    characterid: user.characterid,
+  }
+end
+
+# json.array! @alignments, partial: "alignment", as: :alignment

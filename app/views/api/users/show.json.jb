@@ -1,0 +1,10 @@
+# json.partial! @alignment, partial: "alignment", as: :alignment
+
+{
+  message: "Here's what we know about this user:",
+  id: @user.id,
+  name: @user.name,
+  abbreviation: @user.abbreviation,
+  desc: @user.desc,
+  imgurl: @user.imgurl,
+}
