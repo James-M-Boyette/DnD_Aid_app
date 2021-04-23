@@ -1,18 +1,22 @@
 class Api::UsersController < ApplicationController
-  # def create
+  def create
     # password -> what user types in
     # password_digest, after hashing, saved in db
 
-    # user = User.new(
-    #   name: params[:name],
-    #   email: params[:email],
-    #   password: params[:password],
-    #   password_confirmation: params[:password_confirmation],
-    # )
-    # if user.save
-    #   render json: { message: "User created successfully" }, status: :created
-    # else
-    #   render json: { errors: user.errors.full_messages }, status: :bad_request
-    # end
-  # end
+    user = User.new(
+      userid: params[:userid],
+      email: params[:email],
+      ufirstname: params[:ufirstname],
+      ulastname: params[:ulastname],
+      username: params[:username],
+      password: params[:password],
+      password_confirmation: params[:password_confirmation],
+      characterid: params[:characterid],
+    )
+    if user.save
+      render json: { message: "User created successfully" }, status: :created
+    else
+      render json: { errors: user.errors.full_messages }, status: :bad_request
+    end
+  end
 end

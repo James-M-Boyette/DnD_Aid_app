@@ -46,33 +46,28 @@ class Api::CharactersController < ApplicationController
   # MAKE SURE TO NOT PUT COMMAS FOR THE UPDATE ... IT'S NOT AN OBJECT n BECAUSE "REASONS" VARIABLES CREATED OUTSIDE OF OBJECTS DON'T NEED THIS SEPERATION ... IS THIS RUBY-SPECIFIC???
   def update
     @character = Character.find(params[:id])
-
-    userid
-    cfirstname
-    cmiddlename
-    clastname
-    raceid
-    classid
-    alignmentid
-    languageid
-    inventoryid
-    strength
-    dexterity
-    constitution
-    intelligence
-    wisdom
-    charisma
-    healthmax
-    healthcurrent
-    healthtemp
-    speed
-    @character.name = params[:name] || @character.name
-    @character.price = params[:price] || @character.price
-    @character.description = params[:description] || @character.description
-    @character.image_url = params[:image_url] || @character.image_url
+    @character.userid = params[:userid] || @character.userid
+    @character.cfirstname = params[:cfirstname] || @character.cfirstname
+    @character.cmiddlename = params[:cmiddlename] || @character.cmiddlename
+    @character.clastname = params[:clastname] || @character.clastname
+    @character.raceid = params[:raceid] || @character.raceid
+    @character.classid = params[:classid] || @character.classid
+    @character.alignmentid = params[:alignmentid] || @character.alignmentid
+    @character.languageid = params[:languageid] || @character.languageid
+    @character.inventoryid = params[:inventoryid] || @character.inventoryid
+    @character.strength = params[:strength] || @character.strength
+    @character.dexterity = params[:dexterity] || @character.dexterity
+    @character.constitution = params[:constitution] || @character.constitution
+    @character.intelligence = params[:intelligence] || @character.intelligence
+    @character.wisdom = params[:wisdom] || @character.wisdom
+    @character.charisma = params[:charisma] || @character.charisma
+    @character.healthmax = params[:healthmax] || @character.healthmax
+    @character.healthcurrent = params[:healthcurrent] || @character.healthcurrent
+    @character.healthtemp = params[:healthtemp] || @character.healthtemp
+    @character.speed = params[:speed] || @character.speed
 
     if @character.save
-      render "show.json.jbuilder"
+      render "show.json.jb"
     else
       render json: { errors: @character.errors.full_messages }, status: :unprocessable_entity
     end
