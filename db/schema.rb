@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_23_005019) do
+ActiveRecord::Schema.define(version: 2021_04_26_214013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(version: 2021_04_23_005019) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "images", force: :cascade do |t|
+    t.string "image_id"
+    t.string "image_name"
+    t.string "image_path"
+    t.string "image_size"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "image_obj"
+  end
+
   create_table "languages", force: :cascade do |t|
     t.string "name"
     t.string "desc"
@@ -57,7 +67,7 @@ ActiveRecord::Schema.define(version: 2021_04_23_005019) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
-  # May not need user ID
+
   create_table "users", force: :cascade do |t|
     t.string "ufirstname"
     t.string "ulastname"
@@ -68,4 +78,5 @@ ActiveRecord::Schema.define(version: 2021_04_23_005019) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
+
 end

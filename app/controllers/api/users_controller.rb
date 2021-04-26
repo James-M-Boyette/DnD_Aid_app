@@ -1,4 +1,8 @@
 class Api::UsersController < ApplicationController
+  # include :Current_User
+  include UserHelper
+  # include Current_User
+
   def index
     # render json: "message: People are signing up!"
     @users = User.all
@@ -6,9 +10,17 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:id])
+    current_user
+    @user = @current_user
+    # @user = User.find_by(id: params[:id])
     render "show.json.jb"
+    # render json "wh?"
   end
+
+  # def show
+  #   @user = User.find_by(id: params[:id])
+  #   render "show.json.jb"
+  # end
 
   def create
     # password -> what user types in

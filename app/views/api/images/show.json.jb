@@ -1,0 +1,10 @@
+{
+  message: "Here's the requested image:",
+
+  image_id: @user.image_id,
+  image_name: @user.image_name,
+  image_path: @user.image_path,
+  image_size: @user.image_size,
+  image_obj: @user.image_obj,
+
+}
