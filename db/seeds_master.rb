@@ -29,6 +29,24 @@
 
 # Test Character: Character.new({userid:"u1", cfirstname:"Igor", cmiddlename:"the", clastname:"Strange", raceid:"r1", classid:"c1", alignmentid:"a1", inventoryid:"i1", strength:10, dexterity:17, constitution:14, intelligence:17, wisdom:15, charisma:10, healthmax:14, healthcurrent:14, healthtemp:0, speed:0})
 
+User.create!([
+  {userid: "u0001", email:"sou7hernsaint@gmail.com" , ufirstname: "James", ulastname: "Boyette", password_digest: "$2a$12$0MC4i2YK1CnFV2f5x6O88ODliZlzvQ5y79hAT5sxAu3Plmj9Bxl7i"},
+  {userid: "u0002", email:"b0n0riffic@gmail.com" , ufirstname: "Bono", ulastname: "-", password_digest: "$2a$12$9wfKnCwVcOwax3T.raqub.HeCiC99koKMGpQlMgWDCmroAKfrCPsi"},
+  {userid: "u0003", email:"jB007nd@gmail.com" , ufirstname: "James", ulastname: "Bond", password_digest: "$2a$12$eh1WOL6c0mH0SPdCdy8R7Ot48iRAA7voJ3/5mcPc41DfQ7c0h6pjG"},
+  {userid: "u0004", email:"HJackman@gmail.com" , ufirstname: "Hugh", ulastname: "Jackman", password_digest: "$2a$12$wnblsgODGV6wezxyt3skDeWSd1X7J6YGRNZayBGUV206rGYNH13Aq"},
+])
+# username: "jboye555", password: "Yankees1!"
+# username: "Joshu@Treefolk", password: "u2bEstB@n6NA"
+# username: "user007", password: "sh@k3n"
+# username: "w0lv3r7ne", password: "w0lv3r7ne1!"
+
+Character.create([
+  {userid: "u0001", cfirstname: "Luke", cmiddlename: "", clastname: "Starkiller", raceid: "r0001", classid: "c0001", alignmentid: "a0001", languageid: "l0001", inventoryid: "i0001", strength: 12, dexterity: 16, constitution: 12, intelligence: 13, wisdom: 12, charisma: 15, healthmax: 18, healthcurrent: 18, healthtemp: 18, speed: 1},
+  {userid: "u0001", cfirstname: "Gandolf", cmiddlename: "the", clastname: "Gray", raceid: "r0001", classid: "c0001", alignmentid: "a0001", languageid: "l0001", inventoryid: "i0001", strength: 12, dexterity: 16, constitution: 12, intelligence: 13, wisdom: 12, charisma: 15, healthmax: 18, healthcurrent: 18, healthtemp: 18, speed: 1},
+  {userid: "u0001", cfirstname: "B'Ulgar", cmiddlename: "the", clastname: "Strong", raceid: "r0001", classid: "c0001", alignmentid: "a0001", languageid: "l0001", inventoryid: "i0001", strength: 12, dexterity: 16, constitution: 12, intelligence: 13, wisdom: 12, charisma: 15, healthmax: 18, healthcurrent: 18, healthtemp: 18, speed: 1},
+  {userid: "u0001", cfirstname: "C'Thulu", cmiddlename: "von", clastname: "Spiderman", raceid: "r0001", classid: "c0001", alignmentid: "a0001", languageid: "l0001", inventoryid: "i0001", strength: 12, dexterity: 16, constitution: 12, intelligence: 13, wisdom: 12, charisma: 15, healthmax: 18, healthcurrent: 18, healthtemp: 18, speed: 1},
+])
+
 Alignment.create!([
   {name: "Chaotic Evil", abbreviation: "CE", desc: "Chaotic evil (CE) creatures act with arbitrary violence, spurred by their greed, hatred, or bloodlust. Demons, red dragons, and orcs are chaotic evil.", imgurl: ""},
   {name: "Neutral Evil", abbreviation: "NE", desc: "Neutral evil (NE) is the alignment of those who do whatever they can get away with, without compassion or qualms. Many drow, some cloud giants, and goblins are neutral evil.", imgurl: ""},
