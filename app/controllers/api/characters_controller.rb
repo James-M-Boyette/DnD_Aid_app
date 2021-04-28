@@ -34,6 +34,7 @@ class Api::CharactersController < ApplicationController
       healthcurrent: params[:healthcurrent],
       healthtemp: params[:healthtemp],
       speed: params[:speed],
+      origin_story: params[:origin_story],
     )
 
     if @character.save
@@ -65,6 +66,7 @@ class Api::CharactersController < ApplicationController
     @character.healthcurrent = params[:healthcurrent] || @character.healthcurrent
     @character.healthtemp = params[:healthtemp] || @character.healthtemp
     @character.speed = params[:speed] || @character.speed
+    @character.origin_story = params[:origin_story] || @character.origin_story
 
     if @character.save
       render "show.json.jb"

@@ -21,5 +21,6 @@
     healthcurrent: character.healthcurrent,
     healthtemp: character.healthtemp,
     speed: character.speed,
+    origin_story: character.origin_story,
   }
 end
