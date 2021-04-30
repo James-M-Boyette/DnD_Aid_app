@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user
+
   # helper Current_User
 
   def authenticate_user
@@ -29,4 +30,6 @@ class ApplicationController < ActionController::Base
       render json: {}, status: :unauthorized
     end
   end
+
+  helper_method :authenticate_user
 end

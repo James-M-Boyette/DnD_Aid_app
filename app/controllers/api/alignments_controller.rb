@@ -5,11 +5,6 @@ class Api::AlignmentsController < ApplicationController
     render "index.json.jb"
   end
 
-  def show
-    @alignment = Alignment.find_by(id: params[:id])
-    render "show.json.jb"
-  end
-
   def create
     @alignment = Alignment.new(
       name: params[:name],
@@ -24,7 +19,11 @@ class Api::AlignmentsController < ApplicationController
       render json: { errors: @alignment.errors.full_messages }, status: :unprocessable_entity
     end
   end
-
+  
+  def show
+    @alignment = Alignment.find_by(id: params[:id])
+    render "show.json.jb"
+  end
   # MAKE SURE TO NOT PUT COMMAS FOR THE UPDATE ... IT'S NOT AN OBJECT n BECAUSE "REASONS" VARIABLES CREATED OUTSIDE OF OBJECTS DON'T NEED THIS SEPERATION ... IS THIS RUBY-SPECIFIC???
   def update
     @alignment = Alignment.find(params[:id])

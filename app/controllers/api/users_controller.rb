@@ -1,17 +1,26 @@
 class Api::UsersController < ApplicationController
   # include :Current_User
-  include UserHelper
+  # include UserHelper
   # include Current_User
 
   def index
     # render json: "message: People are signing up!"
-    @users = User.all
+    if current_user
+      @users = User.all
+    else
+      @users = []
+      p "Access Denied"
+    end
     render "index.json.jb"
   end
 
   def show
+    p "Here's 'current user' info:"
+    # p current_user
     current_user
     @user = @current_user
+    p "Here's what's stored in the instance variable:"
+    p @user
     # @user = User.find_by(id: params[:id])
     render "show.json.jb"
     # render json "wh?"
@@ -30,7 +39,7 @@ class Api::UsersController < ApplicationController
       # May not need user ID
       # username: params[:username],
 
-      userid: params[:userid],
+      userid: params[:id],
       email: params[:email],
       ufirstname: params[:ufirstname],
       ulastname: params[:ulastname],
@@ -47,7 +56,7 @@ class Api::UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.userid = params[:userid] || @user.userid
+    @user.userid = params[:id] || @user.id
     @user.email = params[:email] || @user.email
     @user.ufirstname = params[:ufirstname] || @user.ufirstname
     @user.ulastname = params[:ulastname] || @user.ulastname

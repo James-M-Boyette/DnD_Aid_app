@@ -2,10 +2,10 @@
 
 {
   message: "Here's what we know about this user:",
-
   id: @user.id,
   # May not need user ID
-  userid: @user.userid,
+  # userid: "user"params[:id].to_string,
+  # userid: @user.userid,
   email: @user.email,
   ufirstname: @user.ufirstname,
   ulastname: @user.ulastname,
