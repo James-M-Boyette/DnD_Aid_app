@@ -4,6 +4,7 @@
     # May not need user ID
     id: user.id,
     userid: user.userid,
+    adminid: user.adminid,
     email: user.email,
     ufirstname: user.ufirstname,
     ulastname: user.ulastname,

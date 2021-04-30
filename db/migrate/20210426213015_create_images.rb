@@ -5,6 +5,7 @@ class CreateImages < ActiveRecord::Migration[6.1]
       t.string :image_name
       t.string :image_path
       t.string :image_size
+      t.string :image_obj
 
       t.timestamps
     end

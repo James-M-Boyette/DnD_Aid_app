@@ -10,6 +10,7 @@ class CreateCharacters < ActiveRecord::Migration[6.1]
       t.string :alignmentid
       t.string :languageid
       t.string :inventoryid
+      t.text :origin_story
       t.integer :strength
       t.integer :dexterity
       t.integer :constitution

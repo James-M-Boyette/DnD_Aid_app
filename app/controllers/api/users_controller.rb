@@ -7,23 +7,21 @@ class Api::UsersController < ApplicationController
     # render json: "message: People are signing up!"
     if current_user
       @users = User.all
+      render "index.json.jb"
     else
+      p current_user
       @users = []
-      p "Access Denied"
+      render json: { message: "Access Denied (UIndex)" }
     end
-    render "index.json.jb"
   end
 
   def show
-    p "Here's 'current user' info:"
-    # p current_user
-    current_user
-    @user = @current_user
-    p "Here's what's stored in the instance variable:"
-    p @user
-    # @user = User.find_by(id: params[:id])
-    render "show.json.jb"
-    # render json "wh?"
+    if current_user
+      @user = current_user
+      render "show.json.jb"
+    else
+      render json: { message: "Access Denied (UShow)" }
+    end
   end
 
   # def show

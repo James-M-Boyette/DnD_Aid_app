@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_28_011219) do
+ActiveRecord::Schema.define(version: 2021_04_26_213015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2021_04_28_011219) do
     t.string "alignmentid"
     t.string "languageid"
     t.string "inventoryid"
+    t.text "origin_story"
     t.integer "strength"
     t.integer "dexterity"
     t.integer "constitution"
@@ -46,7 +47,6 @@ ActiveRecord::Schema.define(version: 2021_04_28_011219) do
     t.integer "speed"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "origin_story"
   end
 
   create_table "images", force: :cascade do |t|
@@ -54,9 +54,9 @@ ActiveRecord::Schema.define(version: 2021_04_28_011219) do
     t.string "image_name"
     t.string "image_path"
     t.string "image_size"
+    t.string "image_obj"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "image_obj"
   end
 
   create_table "languages", force: :cascade do |t|
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2021_04_28_011219) do
     t.string "email"
     t.string "userid"
     t.string "characterid"
+    t.string "adminid"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

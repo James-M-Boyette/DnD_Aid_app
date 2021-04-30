@@ -2,10 +2,10 @@
 # password_digest
 
 User.create!([
-  {userid: "u0001", email:"sou7hernsaint@gmail.com" , ufirstname: "James", ulastname: "Boyette", password_digest: "$2a$12$0MC4i2YK1CnFV2f5x6O88ODliZlzvQ5y79hAT5sxAu3Plmj9Bxl7i", },
-  {userid: "u0002", email:"b0n0riffic@gmail.com" , ufirstname: "Bono", ulastname: "-", password_digest: "$2a$12$9wfKnCwVcOwax3T.raqub.HeCiC99koKMGpQlMgWDCmroAKfrCPsi", },
-  {userid: "u0003", email:"jB007nd@gmail.com" , ufirstname: "James", ulastname: "Bond", password_digest: "$2a$12$eh1WOL6c0mH0SPdCdy8R7Ot48iRAA7voJ3/5mcPc41DfQ7c0h6pjG", },
-  {userid: "u0004", email:"HJackman@gmail.com" , ufirstname: "Hugh", ulastname: "Jackman", password_digest: "$2a$12$wnblsgODGV6wezxyt3skDeWSd1X7J6YGRNZayBGUV206rGYNH13Aq", },
+  {userid: "u0001", adminid: "a0001", email:"sou7hernsaint@gmail.com" , ufirstname: "James", ulastname: "Boyette", password_digest: "$2a$12$0MC4i2YK1CnFV2f5x6O88ODliZlzvQ5y79hAT5sxAu3Plmj9Bxl7i", },
+  {userid: "u0002", adminid: "a0002", email:"b0n0riffic@gmail.com" , ufirstname: "Bono", ulastname: "-", password_digest: "$2a$12$9wfKnCwVcOwax3T.raqub.HeCiC99koKMGpQlMgWDCmroAKfrCPsi", },
+  {userid: "u0003", adminid: "a0003", email:"jB007nd@gmail.com" , ufirstname: "James", ulastname: "Bond", password_digest: "$2a$12$eh1WOL6c0mH0SPdCdy8R7Ot48iRAA7voJ3/5mcPc41DfQ7c0h6pjG", },
+  {userid: "u0004", adminid: "a0004", email:"HJackman@gmail.com" , ufirstname: "Hugh", ulastname: "Jackman", password_digest: "$2a$12$wnblsgODGV6wezxyt3skDeWSd1X7J6YGRNZayBGUV206rGYNH13Aq", },
 ])
 # username: "jboye555", password: "Yankees1!"
 # username: "Joshu@Treefolk", password: "u2bEstB@n6NA"
