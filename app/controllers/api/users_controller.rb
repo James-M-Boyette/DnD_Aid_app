@@ -5,7 +5,11 @@ class Api::UsersController < ApplicationController
 
   def index
     # render json: "message: People are signing up!"
-    if current_user
+    user = current_user
+    p user
+    admin = user.adminid
+    p admin
+    if current_user && admin == "a0001"
       @users = User.all
       render "index.json.jb"
     else
