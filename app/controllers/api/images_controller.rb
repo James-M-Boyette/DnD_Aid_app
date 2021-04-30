@@ -44,7 +44,7 @@ class ImagesController < ApplicationController
   def destroy
     image = Image.find(params[:id])
     image.destroy
-    render json: { message: "Successfully Destroyed Product" }
+    render json: { message: "Successfully Destroyed the image" }
   end
 end
 

@@ -78,6 +78,6 @@ class Api::CharactersController < ApplicationController
   def destroy
     character = Character.find(params[:id])
     character.destroy
-    render json: { message: "Successfully Destroyed Product" }
+    render json: { message: "Successfully Destroyed the Character" }
   end
 end

@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get "/characters/:id" => "characters#show"
     patch "/characters/:id" => "characters#update"
     delete "/characters/:id" => "characters#destroy"
-  
+
     get "/images" => "images#index"
     post "/images" => "images#create"
     get "/images/:id" => "images#show"
@@ -32,8 +32,8 @@ Rails.application.routes.draw do
     post "/users" => "users#create"
     # get "/users" => "application#show"
     get "/users/current_user/" => "users#show"
-    patch "/users" => "users#update"
-    delete "/users" => "users#destroy"
+    patch "/users/current_user/" => "users#update"
+    delete "/users/current_user/" => "users#destroy"
 
     post "/sessions" => "sessions#create"
   end

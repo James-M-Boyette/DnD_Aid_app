@@ -29,6 +29,7 @@
 
 # Test Character: Character.new({userid:"u1", cfirstname:"Igor", cmiddlename:"the", clastname:"Strange", raceid:"r1", classid:"c1", alignmentid:"a1", inventoryid:"i1", strength:10, dexterity:17, constitution:14, intelligence:17, wisdom:15, charisma:10, healthmax:14, healthcurrent:14, healthtemp:0, speed:0})
 
+# MAKE SURE USER IS FIRST to avoid conflicts when seeding later (for user-dependant tables)
 User.create!([
   {userid: "u0001", email:"sou7hernsaint@gmail.com" , ufirstname: "James", ulastname: "Boyette", password_digest: "$2a$12$0MC4i2YK1CnFV2f5x6O88ODliZlzvQ5y79hAT5sxAu3Plmj9Bxl7i"},
   {userid: "u0002", email:"b0n0riffic@gmail.com" , ufirstname: "Bono", ulastname: "-", password_digest: "$2a$12$9wfKnCwVcOwax3T.raqub.HeCiC99koKMGpQlMgWDCmroAKfrCPsi"},
