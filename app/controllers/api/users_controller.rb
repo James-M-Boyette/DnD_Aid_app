@@ -24,6 +24,7 @@ class Api::UsersController < ApplicationController
       @user = current_user
       render "show.json.jb"
     else
+      @user = []
       render json: { message: "Access Denied (UShow)" }
     end
   end
@@ -57,24 +58,32 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
-    @user.userid = params[:id] || @user.id
-    @user.email = params[:email] || @user.email
-    @user.ufirstname = params[:ufirstname] || @user.ufirstname
-    @user.ulastname = params[:ulastname] || @user.ulastname
-    @user.password = params[:password] || @user.password
-    @user.characterid = params[:characterid] || @user.characterid
+    if current_user
+      @user = current_user
+      @user.userid = params[:id] || @user.id
+      @user.email = params[:email] || @user.email
+      @user.ufirstname = params[:ufirstname] || @user.ufirstname
+      @user.ulastname = params[:ulastname] || @user.ulastname
+      @user.password = params[:password] || @user.password
+      @user.characterid = params[:characterid] || @user.characterid
 
-    if @user.save
-      render "show.json.jb"
+      if @user.save
+        render "show.json.jb"
+      else
+        render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+      end
     else
-      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+      render json: { message: "Access Denied (UUpdate)" }
     end
   end
 
   def destroy
-    user = current_user
-    user.destroy
-    render json: { message: "Successfully Deleted the User Profile from the Database" }
+    if current_user
+      user = current_user
+      user.destroy
+      render json: { message: "Successfully Deleted the User Profile from the Database" }
+    else
+      render json: { message: "Access Denied (UDestroy)" }
+    end
   end
 end

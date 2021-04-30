@@ -10,6 +10,7 @@ class Api::CharactersController < ApplicationController
       @characters = Character.all
       render "index.json.jb"
     else
+      @characters = []
       render json: { message: "Access Denied (Index)" }
     end
   end
@@ -44,6 +45,7 @@ class Api::CharactersController < ApplicationController
         render json: { errors: @character.errors.full_messages }, status: :unprocessable_entity
       end
     else
+      @character = []
       render json: { message: "Access Denied (Create)" }
     end
   end
@@ -53,7 +55,7 @@ class Api::CharactersController < ApplicationController
       @character = Character.find_by(id: params[:id])
       render "show.json.jb"
     else
-      # @character = []
+      @character = []
       render json: { message: "Access Denied (Show)" }
     end
   end
@@ -89,6 +91,7 @@ class Api::CharactersController < ApplicationController
         render json: { errors: @character.errors.full_messages }, status: :unprocessable_entity
       end
     else
+      @character = []
       render json: { message: "Access Denied (Update" }
     end
   end
