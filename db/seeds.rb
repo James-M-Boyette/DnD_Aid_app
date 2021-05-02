@@ -27,10 +27,13 @@ entries.each do |entry|
   puts entry["category_range"]
   puts entry["damage"]["damage_dice"]
   puts entry["damage"]["damage_type"]["name"]
+  puts entry["range"]["normal"]
+  puts entry["range"]["long"]
   puts entry["properties"][1]["name"]
   puts entry["properties"][2]["name"]
   puts entry["properties"][3]["name"]
   puts entry["properties"][4]["name"]
+  puts entry["properties"][5]["name"]
 
   puts entry["armor_category"]
   puts entry["armor_class"]["base"]
