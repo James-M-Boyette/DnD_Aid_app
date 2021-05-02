@@ -47,9 +47,3 @@ class ImagesController < ApplicationController
     render json: { message: "Successfully Destroyed the image" }
   end
 end
-
-image_id
-image_name
-image_path
-image_size
-image_obj

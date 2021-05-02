@@ -1,6 +1,6 @@
 @characters.map do |character|
   {
-    # message: "Which one of these would you like to know more about?",
+    # message: "Would you like to know more about this one?",
     id: character.id,
     user_id: character.user_id,
     cfirstname: character.cfirstname,

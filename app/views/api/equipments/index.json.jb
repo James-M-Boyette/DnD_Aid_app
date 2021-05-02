@@ -1,6 +1,6 @@
 @equipments.map do |equipment|
   {
-    message: "Which one of these would you like to know more about?",
+    message: "Would you like to know more about this one?",
     id: equipment.id,
     name: equipment.name,
     cost: equipment.cost,
@@ -12,10 +12,3 @@
 
   }
 end
-# name
-# cost
-# currency
-# weight
-# desc
-# equipment_category
-# gear_category

@@ -11,3 +11,10 @@ class CreateLanguages < ActiveRecord::Migration[6.1]
     end
   end
 end
+
+# id
+# name
+# desc
+# rarity
+# typical_speakers
+# script

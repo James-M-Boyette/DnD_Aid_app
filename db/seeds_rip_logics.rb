@@ -26,7 +26,14 @@ end
 
 ## Loop through our rubified array and create a new entry for each entry, saving the values associated with our keys into the new instance ... and then store that instanced class as a row in our db table
 entries.each do |entry|
+  # check that we're getting back the correct, general hash
   puts entry
+  # check for each 'route' I create below (in the create! action - if I've written it wrong, I should get back a nil and see where the failure is happening more explicitly). Also,
+  # this is for a basic, first-level entry (hash/array)
+  puts entry["name"]
+  # This is for a nested hash/array
+  puts entry["equipment_category"]["name"]
+  # etc
   Alignment.create!(
     name: entry["name"],
     abbreviation: entry["abbreviation"],

@@ -19,22 +19,66 @@ entries.each do |entry|
   puts entry["name"]
   puts entry["equipment_category"]["name"]
   puts entry["gear_category"]["name"]
+  puts entry["tool_category"]
+  puts entry["vehicle_category"]
+  puts entry["capacity"]
+  puts entry["weapon_category"]
+  puts entry["weapon_range"]
+  puts entry["category_range"]
+  puts entry["damage"]["damage_dice"]
+  puts entry["damage"]["damage_type"]["name"]
+  puts entry["properties"][1]["name"]
+  puts entry["properties"][2]["name"]
+  puts entry["properties"][3]["name"]
+  puts entry["properties"][4]["name"]
+
+  puts entry["armor_category"]
+  puts entry["armor_class"]["base"]
+  puts entry["armor_class"]["dex_bonus"]
+  puts entry["armor_class"]["max_bonus"]
+  puts entry["str_minimum"]
+  puts entry["stealth_disadvantage"]
+
   #cost = integer
   puts entry["cost"]["quantity"]
   puts entry["cost"]["unit"]
   #weight = integer
   puts entry["weight"]
+  puts entry["speed"]["quantity"]
+  puts entry["speed"]["unit"]
   puts entry["desc"]
+
   puts entry
   Equipment.create!(
     name: entry["name"],
     equipment_category: entry["equipment_category"]["name"],
     gear_category: entry["gear_category"]["name"],
+    tool_category: entry["tool_category"],
+    vehicle_category: entry["vehicle_category"],
+    carrying_capacity: entry["capacity"],
+    weapon_category: entry["weapon_category"],
+    weapon_range: entry["weapon_range"],
+    range_category: entry["category_range"],
+    damage_dice: entry["damage"]["damage_dice"],
+    damage_category: entry["damage"]["damage_type"]["name"],
+    property1: entry["properties"][1]["name"],
+    property2: entry["properties"][2]["name"],
+    property3: entry["properties"][3]["name"],
+    property4: entry["properties"][4]["name"],
+    armor_category: entry["armor_category"],
+    armor_base: entry["armor_class"]["base"],
+    armor_dex_bonus: entry["armor_class"]["dex_bonus"],
+    armor_max_bonus: entry["armor_class"]["max_bonus"],
+    str_minimum: entry["str_minimum"],
+    stealth_disadvantage: entry["stealth_disadvantage"],
+
     #cost = integer
     cost: entry["cost"]["quantity"],
     currency: entry["cost"]["unit"],
     #weight = integer
     weight: entry["weight"],
+    speed_amount: entry["speed"]["quantity"],
+    speed_unit: entry["speed"]["unit"],
     desc: entry["desc"],
 
     # imgurl: "",

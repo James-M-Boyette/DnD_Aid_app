@@ -10,3 +10,8 @@ class CreateAlignments < ActiveRecord::Migration[6.1]
     end
   end
 end
+
+# name
+# abbreviation
+# desc
+# imgurl

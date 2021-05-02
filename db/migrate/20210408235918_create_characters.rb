@@ -26,3 +26,24 @@ class CreateCharacters < ActiveRecord::Migration[6.1]
     end
   end
 end
+
+# user_id
+# cfirstname
+# cmiddlename
+# clastname
+# raceid
+# classid
+# alignmentid
+# languageid
+# inventoryid
+# origin_story
+# strength
+# dexterity
+# constitution
+# intelligence
+# wisdom
+# charisma
+# healthmax
+# healthcurrent
+# healthtemp
+# speed

@@ -12,3 +12,10 @@ class CreateUsers < ActiveRecord::Migration[6.1]
     end
   end
 end
+
+# ufirstname
+# ulastname
+# email
+# user_id
+# adminid
+# password_digest

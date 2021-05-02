@@ -11,3 +11,9 @@ class CreateImages < ActiveRecord::Migration[6.1]
     end
   end
 end
+
+# image_id
+# image_name
+# image_path
+# image_size
+# image_obj

@@ -1,6 +1,6 @@
 @images.map do |user|
   {
-    # message: "Which image would you like to see?",
+    # message: "Would you like to know more about this one",
     image_id: user.image_id,
     image_name: user.image_name,
     image_path: user.image_path,

@@ -9,10 +9,3 @@
   equipment_category: @equipment.equipment_category,
   gear_category: @equipment.gear_category,
 }
-# name
-# cost
-# currency
-# weight
-# desc
-# equipment_category
-# gear_category

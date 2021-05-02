@@ -1,6 +1,6 @@
 @users.map do |user|
   {
-    # message: "Which one of these would you like to know more about?",
+    # message: "Would you like to know more about this one",
     # May not need user ID
     id: user.id,
     user_id: user.user_id,
