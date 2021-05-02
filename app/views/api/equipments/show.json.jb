@@ -1,0 +1,18 @@
+{
+  message: "Let's see that swEet equipment!",
+  id: @equipment.id,
+  name: @equipment.name,
+  cost: @equipment.cost,
+  currency: @equipment.currency,
+  weight: @equipment.weight,
+  desc: @equipment.desc,
+  equipment_category: @equipment.equipment_category,
+  gear_category: @equipment.gear_category,
+}
+# name
+# cost
+# currency
+# weight
+# desc
+# equipment_category
+# gear_category

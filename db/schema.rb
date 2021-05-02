@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_26_213015) do
+ActiveRecord::Schema.define(version: 2021_05_02_192025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,18 @@ ActiveRecord::Schema.define(version: 2021_04_26_213015) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "equipment", force: :cascade do |t|
+    t.string "name"
+    t.decimal "cost"
+    t.string "currency"
+    t.decimal "weight"
+    t.text "desc"
+    t.string "equipment_category"
+    t.string "gear_category"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "images", force: :cascade do |t|
     t.string "image_id"
     t.string "image_name"
@@ -74,7 +86,6 @@ ActiveRecord::Schema.define(version: 2021_04_26_213015) do
     t.string "ulastname"
     t.string "email"
     t.string "user_id"
-    t.string "character_id"
     t.string "adminid"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false

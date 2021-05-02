@@ -1,20 +1,24 @@
 #this is the back-up file for my seeds logic
-#MUST COPY SEED LOGIC TO HERE BEFORE RUNNING DB-T0-SEED BACKUP
+# MUST back-up this SEED LOGIC TO HERE BEFORE RUNNING DB-T0-SEED BACKUP
+# We have created logic for each and every table we needed to rip below
 
 require "http"
 
 ## !! Alignment Table rip !! ##
+# For the Alignment table, I've explained each line. for subsequent tables, it's just the pure logic/code ...
 
-## Dump the JSON form of the end-point route's hash into an instanced var
+## (Since what we'll get back will initially be JS and not ruby...) Dump the JSON form of (the end-point route's) hash into an (instanced) variable we can concatonate ...
 @web_resp = HTTP.get("https://www.dnd5eapi.co/api/alignments/").to_s
-## Dump the parsed/converted-to-ruby hash version into a new variable we can run through
+## Dump the now-parsed/converted-to-ruby hash version into a new variable we can FINALLY contatonate with the end-phrase
+### (end phrase: this external api stores all individual things in "index" words/phrases .. equipment/wand or equipment/rhino-mount or equipment/magic-dice)
+### (the index/end phrase funcitons like a url key or array indecy, where we grab everything @ that place)
 dnd_category = JSON.parse(@web_resp)
 ## Create a var+array we can dump our desired entries into
 entries = []
 
-## Loop through this has to find the index-routes they wrote ...
+## Loop through this hash to find the index-routes they wrote ...
 dnd_category["results"].each do |entry|
-  ## and dump what we get from the end-point route + the index url end into an instace variable
+  ## and dump what we get from the end-point route + the index url  end into an instace variable
   @web_resp2 = HTTP.get("https://www.dnd5eapi.co/api/alignments/" + entry["index"]).to_s
   ## add a rubified version of the above to our array
   entries << JSON.parse(@web_resp2)
@@ -27,7 +31,7 @@ entries.each do |entry|
     name: entry["name"],
     abbreviation: entry["abbreviation"],
     desc: entry["desc"],
-    url: entry["url"],
+    imgurl: entry["url"],
   )
 end
 
