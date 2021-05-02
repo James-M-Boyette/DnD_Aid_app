@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_04_26_213015) do
   end
 
   create_table "characters", force: :cascade do |t|
-    t.string "userid"
+    t.string "user_id"
     t.string "cfirstname"
     t.string "cmiddlename"
     t.string "clastname"
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 2021_04_26_213015) do
     t.string "ufirstname"
     t.string "ulastname"
     t.string "email"
-    t.string "userid"
-    t.string "characterid"
+    t.string "user_id"
+    t.string "character_id"
     t.string "adminid"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false

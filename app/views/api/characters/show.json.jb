@@ -1,7 +1,7 @@
 {
   message: "Let's see that swEet character!",
   id: @character.id,
-  userid: @character.userid,
+  user_id: @character.user_id,
   cfirstname: @character.cfirstname,
   cmiddlename: @character.cmiddlename,
   clastname: @character.clastname,

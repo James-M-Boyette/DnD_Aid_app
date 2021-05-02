@@ -2,7 +2,7 @@
   {
     # message: "Which one of these would you like to know more about?",
     id: character.id,
-    userid: character.userid,
+    user_id: character.user_id,
     cfirstname: character.cfirstname,
     cmiddlename: character.cmiddlename,
     clastname: character.clastname,

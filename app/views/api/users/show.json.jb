@@ -5,12 +5,11 @@
   id: @user.id,
   # May not need user ID
   # userid: "user"params[:id].to_string,
-  # userid: @user.userid,
+  user_id: @user.user_id,
   email: @user.email,
   ufirstname: @user.ufirstname,
   ulastname: @user.ulastname,
   # username: @user.username,
   password: @user.password,
   password_confirmation: @user.password_confirmation,
-  characterid: @user.characterid,
 }

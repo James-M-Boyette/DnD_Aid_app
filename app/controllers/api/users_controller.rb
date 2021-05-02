@@ -5,10 +5,10 @@ class Api::UsersController < ApplicationController
 
   def index
     # render json: "message: People are signing up!"
-    user = current_user
-    p user
-    admin = user.adminid
-    p admin
+    # user = current_user
+    # p user
+    # admin = User.userid
+    # p admin
     if current_user && admin == "a0001"
       @users = User.all
       render "index.json.jb"
@@ -37,12 +37,8 @@ class Api::UsersController < ApplicationController
   def create
     # password -> what user types in
     # password_digest, after hashing, saved in db
-
-    @user = User.new(
-      # May not need user ID
+    @character = User.new(
       # username: params[:username],
-
-      userid: params[:id],
       email: params[:email],
       ufirstname: params[:ufirstname],
       ulastname: params[:ulastname],

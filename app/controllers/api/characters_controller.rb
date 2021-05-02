@@ -6,8 +6,16 @@ class Api::CharactersController < ApplicationController
   def index
     # render json: "message: Chaotic Evil is bad"
     # authenticate_user
+    # user = current_user
+    # p user
+    # userid = user.adminid
+    # p admin
+    # This is where the man-through-many comes in
     if current_user
-      @characters = Character.all
+      # @characters = Character.all
+      # @characters = Character.where(user_id: 1)
+      # @characters = Character.where(user_id: current_user.id)
+      @characters = current_user.characters
       render "index.json.jb"
     else
       @characters = []
@@ -18,7 +26,8 @@ class Api::CharactersController < ApplicationController
   def create
     if current_user
       @character = Character.new(
-        userid: params[:userid],
+        # userid: params[:userid],
+        user_id: current_user.id,
         cfirstname: params[:cfirstname],
         cmiddlename: params[:cmiddlename],
         clastname: params[:clastname],
@@ -85,7 +94,8 @@ class Api::CharactersController < ApplicationController
       @character.speed = params[:speed] || @character.speed
       @character.origin_story = params[:origin_story] || @character.origin_story
 
-      if @character.save && current_user
+      # if @character.save && current_user
+      if @character.save
         render "show.json.jb"
       else
         render json: { errors: @character.errors.full_messages }, status: :unprocessable_entity

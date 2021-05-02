@@ -2,10 +2,10 @@
 # password_digest
 
 User.create!([
-  {userid: "u0001", adminid: "a0001", email:"sou7hernsaint@gmail.com" , ufirstname: "James", ulastname: "Boyette", password_digest: "$2a$12$0MC4i2YK1CnFV2f5x6O88ODliZlzvQ5y79hAT5sxAu3Plmj9Bxl7i", },
-  {userid: "u0002", adminid: "a0002", email:"b0n0riffic@gmail.com" , ufirstname: "Bono", ulastname: "-", password_digest: "$2a$12$9wfKnCwVcOwax3T.raqub.HeCiC99koKMGpQlMgWDCmroAKfrCPsi", },
-  {userid: "u0003", adminid: "a0003", email:"jB007nd@gmail.com" , ufirstname: "James", ulastname: "Bond", password_digest: "$2a$12$eh1WOL6c0mH0SPdCdy8R7Ot48iRAA7voJ3/5mcPc41DfQ7c0h6pjG", },
-  {userid: "u0004", adminid: "a0004", email:"HJackman@gmail.com" , ufirstname: "Hugh", ulastname: "Jackman", password_digest: "$2a$12$wnblsgODGV6wezxyt3skDeWSd1X7J6YGRNZayBGUV206rGYNH13Aq", },
+  {user_id: "1", adminid: "a0001", email:"sou7hernsaint@gmail.com" , ufirstname: "James", ulastname: "Boyette", password_digest: "$2a$12$0MC4i2YK1CnFV2f5x6O88ODliZlzvQ5y79hAT5sxAu3Plmj9Bxl7i", },
+  {user_id: "2", adminid: "a0002", email:"b0n0riffic@gmail.com" , ufirstname: "Bono", ulastname: "-", password_digest: "$2a$12$9wfKnCwVcOwax3T.raqub.HeCiC99koKMGpQlMgWDCmroAKfrCPsi", },
+  {user_id: "3", adminid: "a0003", email:"jB007nd@gmail.com" , ufirstname: "James", ulastname: "Bond", password_digest: "$2a$12$eh1WOL6c0mH0SPdCdy8R7Ot48iRAA7voJ3/5mcPc41DfQ7c0h6pjG", },
+  {user_id: "4", adminid: "a0004", email:"HJackman@gmail.com" , ufirstname: "Hugh", ulastname: "Jackman", password_digest: "$2a$12$wnblsgODGV6wezxyt3skDeWSd1X7J6YGRNZayBGUV206rGYNH13Aq", },
 ])
 # username: "jboye555", password: "Yankees1!"
 # username: "Joshu@Treefolk", password: "u2bEstB@n6NA"
@@ -13,10 +13,10 @@ User.create!([
 # username: "w0lv3r7ne", password: "w0lv3r7ne1!"
 
 Character.create([
-  {userid: "u0001", cfirstname: "Luke", cmiddlename: "", clastname: "Starkiller", raceid: "r0001", classid: "c0001", alignmentid: "a0001", languageid: "l0001", inventoryid: "i0001", strength: 12, dexterity: 16, constitution: 12, intelligence: 13, wisdom: 12, charisma: 15, healthmax: 18, healthcurrent: 18, healthtemp: 0, speed: 1, origin_story: "A long time ago ... when a man had the forsite to retain intellectual property rights ..."},
-  {userid: "u0001", cfirstname: "Gandolf", cmiddlename: "the", clastname: "Gray", raceid: "r0001", classid: "c0001", alignmentid: "a0001", languageid: "l0001", inventoryid: "i0001", strength: 12, dexterity: 16, constitution: 12, intelligence: 13, wisdom: 12, charisma: 15, healthmax: 18, healthcurrent: 18, healthtemp: 0, speed: 1, origin_story: "He was a man so powerful, he could define TWO movie franchises ... "},
-  {userid: "u0001", cfirstname: "B'Ulgar", cmiddlename: "the", clastname: "Strong", raceid: "r0001", classid: "c0001", alignmentid: "a0001", languageid: "l0001", inventoryid: "i0001", strength: 12, dexterity: 16, constitution: 12, intelligence: 13, wisdom: 12, charisma: 15, healthmax: 18, healthcurrent: 18, healthtemp: 0, speed: 1, origin_story: "The Barbarian Hoards of the North had always been a strong, solemn people ... and B'Ulgar was primed to become Chieftan of All"},
-  {userid: "u0001", cfirstname: "C'Thulu", cmiddlename: "von", clastname: "Spiderman", raceid: "r0001", classid: "c0001", alignmentid: "a0001", languageid: "l0001", inventoryid: "i0001", strength: 12, dexterity: 16, constitution: 12, intelligence: 13, wisdom: 12, charisma: 15, healthmax: 18, healthcurrent: 18, healthtemp: 0, speed: 1, origin_story: "He shot webs, and melted the minds of his enemies while drinking Gatorade mixed with pepermint schnopz ... bring on the adventure!"},
+  {user_id: "1", cfirstname: "Luke", cmiddlename: "", clastname: "Starkiller", raceid: "r0001", classid: "c0001", alignmentid: "a0001", languageid: "l0001", inventoryid: "i0001", strength: 12, dexterity: 16, constitution: 12, intelligence: 13, wisdom: 12, charisma: 15, healthmax: 18, healthcurrent: 18, healthtemp: 0, speed: 1, origin_story: "A long time ago ... when a man had the forsite to retain intellectual property rights ..."},
+  {user_id: "1", cfirstname: "Gandolf", cmiddlename: "the", clastname: "Gray", raceid: "r0001", classid: "c0001", alignmentid: "a0001", languageid: "l0001", inventoryid: "i0001", strength: 12, dexterity: 16, constitution: 12, intelligence: 13, wisdom: 12, charisma: 15, healthmax: 18, healthcurrent: 18, healthtemp: 0, speed: 1, origin_story: "He was a man so powerful, he could define TWO movie franchises ... "},
+  {user_id: "1", cfirstname: "B'Ulgar", cmiddlename: "the", clastname: "Strong", raceid: "r0001", classid: "c0001", alignmentid: "a0001", languageid: "l0001", inventoryid: "i0001", strength: 12, dexterity: 16, constitution: 12, intelligence: 13, wisdom: 12, charisma: 15, healthmax: 18, healthcurrent: 18, healthtemp: 0, speed: 1, origin_story: "The Barbarian Hoards of the North had always been a strong, solemn people ... and B'Ulgar was primed to become Chieftan of All"},
+  {user_id: "1", cfirstname: "C'Thulu", cmiddlename: "von", clastname: "Spiderman", raceid: "r0001", classid: "c0001", alignmentid: "a0001", languageid: "l0001", inventoryid: "i0001", strength: 12, dexterity: 16, constitution: 12, intelligence: 13, wisdom: 12, charisma: 15, healthmax: 18, healthcurrent: 18, healthtemp: 0, speed: 1, origin_story: "He shot webs, and melted the minds of his enemies while drinking Gatorade mixed with pepermint schnopz ... bring on the adventure!"},
 ])
 
 Alignment.create!([
