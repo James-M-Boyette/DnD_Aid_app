@@ -33,7 +33,7 @@ entries.each do |entry|
   puts entry["name"]
   # This is for a nested hash/array
   puts entry["equipment_category"]["name"]
-  # etc
+  # etc ... make one of these for each attribute
   Alignment.create!(
     name: entry["name"],
     abbreviation: entry["abbreviation"],
