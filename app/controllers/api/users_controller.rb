@@ -37,14 +37,13 @@ class Api::UsersController < ApplicationController
   def create
     # password -> what user types in
     # password_digest, after hashing, saved in db
-    @character = User.new(
+    @user = User.new(
       # username: params[:username],
       email: params[:email],
       ufirstname: params[:ufirstname],
       ulastname: params[:ulastname],
       password: params[:password],
       password_confirmation: params[:password_confirmation],
-      characterid: params[:characterid],
     )
     if @user.save
       render json: { message: "User created successfully" }, status: :created
@@ -56,12 +55,12 @@ class Api::UsersController < ApplicationController
   def update
     if current_user
       @user = current_user
-      @user.userid = params[:id] || @user.id
+      @user.user_id = params[:id] || @user.id
       @user.email = params[:email] || @user.email
       @user.ufirstname = params[:ufirstname] || @user.ufirstname
       @user.ulastname = params[:ulastname] || @user.ulastname
       @user.password = params[:password] || @user.password
-      @user.characterid = params[:characterid] || @user.characterid
+      # @user.characterid = params[:characterid] || @user.characterid
 
       if @user.save
         render "show.json.jb"

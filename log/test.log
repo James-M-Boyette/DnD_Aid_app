@@ -1,0 +1,95 @@
+  [1m[35m (390.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "DnD_Aid_app_test"[0m
+  [1m[35m (1156.7ms)[0m  [1m[35mCREATE DATABASE "DnD_Aid_app_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (41.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "alignments" CASCADE[0m
+  [1m[35m (36.3ms)[0m  [1m[35mCREATE TABLE "alignments" ("id" bigserial primary key, "name" character varying, "abbreviation" character varying, "desc" character varying, "imgurl" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "characters" CASCADE[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE TABLE "characters" ("id" bigserial primary key, "userid" character varying, "cfirstname" character varying, "cmiddlename" character varying, "clastname" character varying, "raceid" character varying, "classid" character varying, "alignmentid" character varying, "languageid" character varying, "inventoryid" character varying, "strength" integer, "dexterity" integer, "constitution" integer, "intelligence" integer, "wisdom" integer, "charisma" integer, "healthmax" integer, "healthcurrent" integer, "healthtemp" integer, "speed" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "languages" CASCADE[0m
+  [1m[35m (12.1ms)[0m  [1m[35mCREATE TABLE "languages" ("id" bigserial primary key, "name" character varying, "desc" character varying, "rarity" character varying, "speakers" character varying, "script" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "userid" character varying, "email" character varying, "ufirstname" character varying, "ulastname" character varying, "username" character varying, "password" character varying, "characterid" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (123.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (297.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210408235918)[0m
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210323211018),
+(20210402011752),
+(20210408235530);
+
+[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (44.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", "2021-04-15 00:39:16.522884"], ["updated_at", "2021-04-15 00:39:16.522884"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (14.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "20787d031c09705cdeef18caf30918170ef557bc"], ["created_at", "2021-04-15 00:39:16.594866"], ["updated_at", "2021-04-15 00:39:16.594866"]]
+  [1m[36mTRANSACTION (39.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (3.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAlignment Create (1.4ms)[0m  [1m[32mINSERT INTO "alignments" ("name", "abbreviation", "desc", "imgurl", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "the name"], ["abbreviation", "the abbreviation"], ["desc", "the desc"], ["imgurl", "the imgurl"], ["created_at", "2021-04-15 00:39:16.956092"], ["updated_at", "2021-04-15 00:39:16.956092"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/api/alignments" for 127.0.0.1 at 2021-04-14 20:39:16 -0400
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAlignment Create (1.0ms)[0m  [1m[32mINSERT INTO "alignments" ("name", "abbreviation", "desc", "imgurl", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "the name"], ["abbreviation", "the abbreviation"], ["desc", "the desc"], ["imgurl", "the imgurl"], ["created_at", "2021-04-15 00:39:45.475379"], ["updated_at", "2021-04-15 00:39:45.475379"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/api/alignments" for 127.0.0.1 at 2021-04-14 20:39:45 -0400
+Processing by Api::AlignmentsController#index as HTML
+  Rendering api/alignments/index.json.jb
+  [1m[36mAlignment Load (11.7ms)[0m  [1m[34mSELECT "alignments".* FROM "alignments"[0m
+  Rendered api/alignments/index.json.jb (Duration: 14.5ms | Allocations: 456)
+Completed 200 OK in 50ms (Views: 29.9ms | ActiveRecord: 11.7ms | Allocations: 3904)
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAlignment Create (0.8ms)[0m  [1m[32mINSERT INTO "alignments" ("id", "name", "abbreviation", "desc", "imgurl", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["id", 0], ["name", "the alignment name"], ["abbreviation", "the alignment abbreviation"], ["desc", "the alignment desc"], ["imgurl", "the alignment imgurl"], ["created_at", "2021-04-15 00:42:54.437901"], ["updated_at", "2021-04-15 00:42:54.437901"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/api/alignments" for 127.0.0.1 at 2021-04-14 20:42:54 -0400
+Processing by Api::AlignmentsController#index as HTML
+  Rendering api/alignments/index.json.jb
+  [1m[36mAlignment Load (0.5ms)[0m  [1m[34mSELECT "alignments".* FROM "alignments"[0m
+  Rendered api/alignments/index.json.jb (Duration: 3.7ms | Allocations: 457)
+Completed 200 OK in 21ms (Views: 14.2ms | ActiveRecord: 0.5ms | Allocations: 3905)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (13.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAlignment Create (7.6ms)[0m  [1m[32mINSERT INTO "alignments" ("id", "name", "abbreviation", "desc", "imgurl", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["id", 0], ["name", "the alignment name"], ["abbreviation", "the alignment abbreviation"], ["desc", "the alignment desc"], ["imgurl", "the alignment imgurl"], ["created_at", "2021-04-15 00:43:45.373991"], ["updated_at", "2021-04-15 00:43:45.373991"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/api/alignments" for 127.0.0.1 at 2021-04-14 20:43:45 -0400
+Processing by Api::AlignmentsController#index as HTML
+  Rendering api/alignments/index.json.jb
+  [1m[36mAlignment Load (6.2ms)[0m  [1m[34mSELECT "alignments".* FROM "alignments"[0m
+  Rendered api/alignments/index.json.jb (Duration: 43.5ms | Allocations: 457)
+Completed 200 OK in 179ms (Views: 136.7ms | ActiveRecord: 6.2ms | Allocations: 3905)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "schema_sha1"]]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mAlignment Create (0.6ms)[0m  [1m[32mINSERT INTO "alignments" ("id", "name", "abbreviation", "desc", "imgurl", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["id", 0], ["name", "the alignment name"], ["abbreviation", "the alignment abbreviation"], ["desc", "the alignment desc"], ["imgurl", "the alignment imgurl"], ["created_at", "2021-04-15 01:04:22.726104"], ["updated_at", "2021-04-15 01:04:22.726104"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/api/alignments" for 127.0.0.1 at 2021-04-14 21:04:22 -0400
+Processing by Api::AlignmentsController#index as HTML
+  Rendering api/alignments/index.json.jb
+  [1m[36mAlignment Load (0.4ms)[0m  [1m[34mSELECT "alignments".* FROM "alignments"[0m
+  Rendered api/alignments/index.json.jb (Duration: 2.5ms | Allocations: 457)
+Completed 200 OK in 16ms (Views: 11.2ms | ActiveRecord: 0.4ms | Allocations: 3905)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
