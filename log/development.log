@@ -20660,3 +20660,2482 @@ DEPRECATION WARNING: Rendering actions with '.' in the name is deprecated: api/u
 Completed 200 OK in 436ms (Views: 36.3ms | ActiveRecord: 39.9ms | Allocations: 5593)
 
 
+Started POST "/api/users" for ::1 at 2021-05-04 20:09:22 -0400
+Processing by Api::UsersController#create as JSON
+  Parameters: {"ufirstname"=>"Jessica", "ulastname"=>"Epps", "email"=>"email@email.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"ufirstname"=>"Jessica", "ulastname"=>"Epps", "email"=>"email@email.com"}}
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mUser Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mUser Create (1.9ms)[0m  [1m[32mINSERT INTO "users" ("ufirstname", "ulastname", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["ufirstname", "Jessica"], ["ulastname", "Epps"], ["email", "email@email.com"], ["password_digest", "$2a$12$lsYwq4gn92rkGBBVRbAnsezzRsH7idpJvxigiKO4xgJjVFKAcmtNS"], ["created_at", "2021-05-05 00:09:22.856996"], ["updated_at", "2021-05-05 00:09:22.856996"]]
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+Completed 201 Created in 352ms (Views: 0.3ms | ActiveRecord: 20.8ms | Allocations: 7224)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-04 20:09:32 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"email@email.com", "password"=>"[FILTERED]", "session"=>{"email"=>"email@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 383ms (Views: 0.5ms | ActiveRecord: 1.5ms | Allocations: 1122)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:09:33 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.5ms | Allocations: 55)
+Completed 200 OK in 12ms (Views: 2.7ms | ActiveRecord: 1.6ms | Allocations: 2009)
+
+
+Started PATCH "/api/users/current_user/" for ::1 at 2021-05-04 20:09:46 -0400
+Processing by Api::UsersController#update as JSON
+  Parameters: {"ufirstname"=>"Jessica", "ulastname"=>"Epps", "email"=>"email@email.com", "password"=>"[FILTERED]", "user"=>{"ufirstname"=>"Jessica", "ulastname"=>"Epps", "email"=>"email@email.com"}}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mUser Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "email@email.com"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mUser Update (2.0ms)[0m  [1m[33mUPDATE "users" SET "user_id" = $1, "password_digest" = $2, "updated_at" = $3 WHERE "users"."id" = $4[0m  [["user_id", "6"], ["password_digest", "$2a$12$9htS6Y/UO1wGp2DZKLERF.NXkLlDKc07CHZsmVUaioKhnag2T.B06"], ["updated_at", "2021-05-05 00:09:46.375434"], ["id", 6]]
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 53)
+Completed 200 OK in 379ms (Views: 2.7ms | ActiveRecord: 9.0ms | Allocations: 4987)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-04 20:10:03 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"email@email.com", "password"=>"[FILTERED]", "session"=>{"email"=>"email@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 316ms (Views: 0.2ms | ActiveRecord: 1.4ms | Allocations: 974)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:10:04 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (3.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.4ms | Allocations: 46)
+Completed 200 OK in 32ms (Views: 2.4ms | ActiveRecord: 3.3ms | Allocations: 1745)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-04 20:10:12 -0400
+Processing by Api::CharactersController#index as JSON
+  [1m[36mUser Load (6.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mCharacter Load (2.8ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "6"]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/characters/index.json.jb (Duration: 18.4ms | Allocations: 2577)
+Completed 200 OK in 123ms (Views: 14.3ms | ActiveRecord: 14.0ms | Allocations: 5037)
+
+
+Started POST "/api/characters" for ::1 at 2021-05-04 20:10:33 -0400
+Processing by Api::CharactersController#create as JSON
+  Parameters: {"cfirstname"=>"Why", "cmiddlename"=>"Dont ", "clastname"=>"we watch a movie", "raceid"=>"", "classid"=>"", "alignmentid"=>"", "languageid"=>"", "inventoryid"=>"", "strength"=>"", "dexterity"=>"", "constitution"=>"", "intelligence"=>"", "wisdom"=>"", "charisma"=>"", "healthmax"=>"", "healthcurrent"=>"", "healthtemp"=>"", "speed"=>"", "character"=>{"cfirstname"=>"Why", "cmiddlename"=>"Dont ", "clastname"=>"we watch a movie", "raceid"=>"", "classid"=>"", "alignmentid"=>"", "languageid"=>"", "inventoryid"=>"", "strength"=>"", "dexterity"=>"", "constitution"=>"", "intelligence"=>"", "wisdom"=>"", "charisma"=>"", "healthmax"=>"", "healthcurrent"=>"", "healthtemp"=>"", "speed"=>""}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/characters_controller.rb:51:in `create'
+  [1m[36mCharacter Create (1.6ms)[0m  [1m[32mINSERT INTO "characters" ("user_id", "cfirstname", "cmiddlename", "clastname", "raceid", "classid", "alignmentid", "languageid", "inventoryid", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["user_id", "6"], ["cfirstname", "Why"], ["cmiddlename", "Dont "], ["clastname", "we watch a movie"], ["raceid", ""], ["classid", ""], ["alignmentid", ""], ["languageid", ""], ["inventoryid", ""], ["created_at", "2021-05-05 00:10:33.764567"], ["updated_at", "2021-05-05 00:10:33.764567"]]
+  ↳ app/controllers/api/characters_controller.rb:51:in `create'
+  [1m[36mTRANSACTION (51.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/characters_controller.rb:51:in `create'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 0.3ms | Allocations: 93)
+Completed 200 OK in 142ms (Views: 1.4ms | ActiveRecord: 65.3ms | Allocations: 12881)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-04 20:10:38 -0400
+Processing by Api::CharactersController#index as JSON
+  [1m[36mUser Load (3.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:10:38 -0400
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+Processing by Api::UsersController#show as JSON
+  [1m[36mCharacter Load (3.7ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "6"]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/characters/index.json.jb (Duration: 8.7ms | Allocations: 1661)
+Completed 200 OK in 25ms (Views: 6.1ms | ActiveRecord: 7.4ms | Allocations: 4832)
+
+
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.8ms | Allocations: 46)
+Completed 200 OK in 453ms (Views: 3.1ms | ActiveRecord: 260.5ms | Allocations: 6164)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:10:50 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 9ms (Views: 1.5ms | ActiveRecord: 1.5ms | Allocations: 1745)
+
+
+Started DELETE "/api/users/current_user/" for ::1 at 2021-05-04 20:10:52 -0400
+Processing by Api::UsersController#destroy as JSON
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+  [1m[36mUser Destroy (1.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 6]]
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+  [1m[36mTRANSACTION (48.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+Completed 200 OK in 67ms (Views: 0.3ms | ActiveRecord: 53.6ms | Allocations: 3263)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-04 20:11:06 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"email@email.com", "password"=>"[FILTERED]", "session"=>{"email"=>"email@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 401 Unauthorized in 7ms (Views: 0.3ms | ActiveRecord: 2.7ms | Allocations: 839)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-04 20:11:15 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sou7hernsaint@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 371ms (Views: 0.3ms | ActiveRecord: 1.4ms | Allocations: 975)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:11:16 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.3ms | Allocations: 46)
+Completed 200 OK in 8ms (Views: 1.0ms | ActiveRecord: 1.3ms | Allocations: 1746)
+
+
+Started PATCH "/api/users/current_user/" for ::1 at 2021-05-04 20:11:28 -0400
+Processing by Api::UsersController#update as JSON
+  Parameters: {"ufirstname"=>"Michael", "ulastname"=>"Boyette", "email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "user"=>{"ufirstname"=>"Michael", "ulastname"=>"Boyette", "email"=>"sou7hernsaint@gmail.com"}}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (4.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mUser Exists? (8.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "sou7hernsaint@gmail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mUser Update (2.8ms)[0m  [1m[33mUPDATE "users" SET "ufirstname" = $1, "password_digest" = $2, "updated_at" = $3 WHERE "users"."id" = $4[0m  [["ufirstname", "Michael"], ["password_digest", "$2a$12$AdYdtNapDwTTuZbHmUj99eVF/N4nhMRBap6rWjxD11GFFJmQoqRCK"], ["updated_at", "2021-05-05 00:11:29.307279"], ["id", 1]]
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mTRANSACTION (18.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 53)
+Completed 200 OK in 410ms (Views: 1.8ms | ActiveRecord: 36.7ms | Allocations: 4969)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-04 20:11:33 -0400
+Processing by Api::CharactersController#index as JSON
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:11:33 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (67.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mUser Load (4.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCharacter Load (20.8ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "1"]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.3ms | Allocations: 46)
+  Rendered api/characters/index.json.jb (Duration: 216.0ms | Allocations: 2381)
+Completed 200 OK in 508ms (Views: 199.6ms | ActiveRecord: 88.1ms | Allocations: 6828)
+
+
+Completed 200 OK in 498ms (Views: 9.3ms | ActiveRecord: 4.0ms | Allocations: 5160)
+
+
+Started GET "/api/characters/1" for ::1 at 2021-05-04 20:11:39 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"1"}
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:11:39 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 43ms (Views: 2.3ms | ActiveRecord: 2.7ms | Allocations: 2606)
+
+
+  [1m[36mCharacter Load (1.5ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 0.3ms | Allocations: 53)
+Completed 200 OK in 453ms (Views: 2.7ms | ActiveRecord: 4.5ms | Allocations: 5716)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-04 20:19:33 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sou7hernsaint@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 401 Unauthorized in 419ms (Views: 1.0ms | ActiveRecord: 23.2ms | Allocations: 3997)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-04 20:19:39 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sou7hernsaint@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 274ms (Views: 0.7ms | ActiveRecord: 1.0ms | Allocations: 975)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:19:40 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (10.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.5ms | Allocations: 46)
+Completed 200 OK in 22ms (Views: 3.2ms | ActiveRecord: 10.6ms | Allocations: 1750)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-04 20:19:50 -0400
+Processing by Api::CharactersController#index as JSON
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:19:50 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (4.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mCharacter Load (3.6ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "1"]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/characters/index.json.jb (Duration: 60.3ms | Allocations: 1034)
+Completed 200 OK in 112ms (Views: 61.4ms | ActiveRecord: 8.1ms | Allocations: 4421)
+
+
+  [1m[36mUser Load (4.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.5ms | Allocations: 63)
+Completed 200 OK in 272ms (Views: 3.0ms | ActiveRecord: 45.9ms | Allocations: 8484)
+
+
+Started GET "/api/characters/1" for ::1 at 2021-05-04 20:19:53 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"1"}
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:19:53 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (7.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mUser Load (14.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 120ms (Views: 4.0ms | ActiveRecord: 14.2ms | Allocations: 2473)
+
+
+  [1m[36mCharacter Load (67.0ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 1.6ms | Allocations: 53)
+Completed 200 OK in 330ms (Views: 4.8ms | ActiveRecord: 74.0ms | Allocations: 5623)
+
+
+Started POST "/api/users" for ::1 at 2021-05-04 20:23:40 -0400
+Processing by Api::UsersController#create as JSON
+  Parameters: {"ufirstname"=>"Jessica", "ulastname"=>"Boyette", "email"=>"email@email.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"ufirstname"=>"Jessica", "ulastname"=>"Boyette", "email"=>"email@email.com"}}
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mUser Create (1.4ms)[0m  [1m[32mINSERT INTO "users" ("ufirstname", "ulastname", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["ufirstname", "Jessica"], ["ulastname", "Boyette"], ["email", "email@email.com"], ["password_digest", "$2a$12$ANFZpEtZkkl/qw0reXHXJ.uVq69Lq0/D/MdzqBrl1GldJ6rb91zum"], ["created_at", "2021-05-05 00:23:41.245976"], ["updated_at", "2021-05-05 00:23:41.245976"]]
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mTRANSACTION (5.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+Completed 201 Created in 325ms (Views: 0.2ms | ActiveRecord: 11.4ms | Allocations: 3464)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-04 20:23:53 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"email@email.com", "password"=>"[FILTERED]", "session"=>{"email"=>"email@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 652ms (Views: 0.2ms | ActiveRecord: 1.6ms | Allocations: 978)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:23:54 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 45)
+Completed 200 OK in 29ms (Views: 1.6ms | ActiveRecord: 2.1ms | Allocations: 1739)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-04 20:24:03 -0400
+Processing by Api::CharactersController#index as JSON
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mCharacter Load (4.7ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "7"]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/characters/index.json.jb (Duration: 16.2ms | Allocations: 834)
+Completed 200 OK in 43ms (Views: 12.8ms | ActiveRecord: 6.6ms | Allocations: 2489)
+
+
+Started POST "/api/characters" for ::1 at 2021-05-04 20:24:26 -0400
+Processing by Api::CharactersController#create as JSON
+  Parameters: {"cfirstname"=>"Why", "cmiddlename"=>"Do you", "clastname"=>"Make me do this", "raceid"=>"", "classid"=>"", "alignmentid"=>"", "languageid"=>"", "inventoryid"=>"", "strength"=>"", "dexterity"=>"", "constitution"=>"", "intelligence"=>"", "wisdom"=>"", "charisma"=>"", "healthmax"=>"", "healthcurrent"=>"", "healthtemp"=>"", "speed"=>"", "character"=>{"cfirstname"=>"Why", "cmiddlename"=>"Do you", "clastname"=>"Make me do this", "raceid"=>"", "classid"=>"", "alignmentid"=>"", "languageid"=>"", "inventoryid"=>"", "strength"=>"", "dexterity"=>"", "constitution"=>"", "intelligence"=>"", "wisdom"=>"", "charisma"=>"", "healthmax"=>"", "healthcurrent"=>"", "healthtemp"=>"", "speed"=>""}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/characters_controller.rb:51:in `create'
+  [1m[36mCharacter Create (1.1ms)[0m  [1m[32mINSERT INTO "characters" ("user_id", "cfirstname", "cmiddlename", "clastname", "raceid", "classid", "alignmentid", "languageid", "inventoryid", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["user_id", "7"], ["cfirstname", "Why"], ["cmiddlename", "Do you"], ["clastname", "Make me do this"], ["raceid", ""], ["classid", ""], ["alignmentid", ""], ["languageid", ""], ["inventoryid", ""], ["created_at", "2021-05-05 00:24:26.732780"], ["updated_at", "2021-05-05 00:24:26.732780"]]
+  ↳ app/controllers/api/characters_controller.rb:51:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/characters_controller.rb:51:in `create'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 0.2ms | Allocations: 51)
+Completed 200 OK in 17ms (Views: 0.9ms | ActiveRecord: 4.2ms | Allocations: 4067)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-04 20:24:31 -0400
+Processing by Api::CharactersController#index as JSON
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:24:31 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (82.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mCharacter Load (2.9ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "7"]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  [1m[36mUser Load (33.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  Rendered api/characters/index.json.jb (Duration: 7.4ms | Allocations: 1016)
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+Completed 200 OK in 152ms (Views: 16.8ms | ActiveRecord: 85.3ms | Allocations: 5144)
+
+
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.6ms | Allocations: 45)
+Completed 200 OK in 153ms (Views: 4.5ms | ActiveRecord: 33.6ms | Allocations: 4433)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:24:44 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (19.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 45)
+Completed 200 OK in 32ms (Views: 1.7ms | ActiveRecord: 19.7ms | Allocations: 1739)
+
+
+Started DELETE "/api/users/current_user/" for ::1 at 2021-05-04 20:24:46 -0400
+Processing by Api::UsersController#destroy as JSON
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+  [1m[36mUser Destroy (3.7ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 7]]
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+Completed 200 OK in 20ms (Views: 0.4ms | ActiveRecord: 7.1ms | Allocations: 3194)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-04 20:24:53 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sou7hernsaint@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 282ms (Views: 0.3ms | ActiveRecord: 1.7ms | Allocations: 977)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:24:54 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 73ms (Views: 1.6ms | ActiveRecord: 1.1ms | Allocations: 1746)
+
+
+Started PATCH "/api/users/current_user/" for ::1 at 2021-05-04 20:25:09 -0400
+Processing by Api::UsersController#update as JSON
+  Parameters: {"ufirstname"=>"Michael", "ulastname"=>"Boyette", "email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "user"=>{"ufirstname"=>"Michael", "ulastname"=>"Boyette", "email"=>"sou7hernsaint@gmail.com"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mUser Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "sou7hernsaint@gmail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mUser Update (2.0ms)[0m  [1m[33mUPDATE "users" SET "password_digest" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["password_digest", "$2a$12$V1.pO2MC01l1bsq4oGy73uC5pB5mYH0HUmEH3LJBz965aABaPyb5q"], ["updated_at", "2021-05-05 00:25:09.779879"], ["id", 1]]
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mTRANSACTION (41.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 53)
+Completed 200 OK in 368ms (Views: 1.1ms | ActiveRecord: 46.4ms | Allocations: 4942)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-04 20:25:14 -0400
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:25:14 -0400
+Processing by Api::CharactersController#index as JSON
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (4.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mUser Load (69.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCharacter Load (61.0ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "1"]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendered api/characters/index.json.jb (Duration: 393.6ms | Allocations: 1985)
+Completed 200 OK in 435ms (Views: 336.7ms | ActiveRecord: 65.9ms | Allocations: 5348)
+
+
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.3ms | Allocations: 46)
+Completed 200 OK in 435ms (Views: 4.9ms | ActiveRecord: 69.0ms | Allocations: 5210)
+
+
+Started GET "/api/characters/1" for ::1 at 2021-05-04 20:25:27 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"1"}
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:25:28 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (41.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCharacter Load (6.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  [1m[36mUser Load (3.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering api/characters/show.json.jb
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendered api/characters/show.json.jb (Duration: 0.2ms | Allocations: 53)
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 57ms (Views: 3.1ms | ActiveRecord: 3.4ms | Allocations: 3460)
+
+
+Completed 200 OK in 68ms (Views: 7.7ms | ActiveRecord: 47.8ms | Allocations: 5195)
+
+
+Started POST "/api/users" for ::1 at 2021-05-04 20:41:01 -0400
+Processing by Api::UsersController#create as JSON
+  Parameters: {"ufirstname"=>"Jess", "ulastname"=>"Boyette", "email"=>"email@email.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"ufirstname"=>"Jess", "ulastname"=>"Boyette", "email"=>"email@email.com"}}
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mUser Exists? (5.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mUser Create (6.4ms)[0m  [1m[32mINSERT INTO "users" ("ufirstname", "ulastname", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["ufirstname", "Jess"], ["ulastname", "Boyette"], ["email", "email@email.com"], ["password_digest", "$2a$12$aRoEcWv7rqD/nBGysTYwfOSgwwG6CHO9lS85AD97LiVDPcVPithHi"], ["created_at", "2021-05-05 00:41:02.519032"], ["updated_at", "2021-05-05 00:41:02.519032"]]
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+Completed 201 Created in 627ms (Views: 1.4ms | ActiveRecord: 48.8ms | Allocations: 6426)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-04 20:41:17 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"email@email.com", "password"=>"[FILTERED]", "session"=>{"email"=>"email@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (7.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 525ms (Views: 0.4ms | ActiveRecord: 88.9ms | Allocations: 1190)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:41:18 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (13.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 1.0ms | Allocations: 45)
+Completed 200 OK in 55ms (Views: 27.1ms | ActiveRecord: 16.0ms | Allocations: 1743)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-04 20:41:28 -0400
+Processing by Api::CharactersController#index as JSON
+  [1m[36mUser Load (71.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mCharacter Load (28.3ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "8"]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/characters/index.json.jb (Duration: 213.8ms | Allocations: 855)
+Completed 200 OK in 781ms (Views: 187.1ms | ActiveRecord: 100.0ms | Allocations: 2512)
+
+
+Started POST "/api/characters" for ::1 at 2021-05-04 20:41:45 -0400
+Processing by Api::CharactersController#create as JSON
+  Parameters: {"cfirstname"=>"Why", "cmiddlename"=>"Do you", "clastname"=>"Make me do this", "raceid"=>"", "classid"=>"", "alignmentid"=>"", "languageid"=>"", "inventoryid"=>"", "strength"=>"", "dexterity"=>"", "constitution"=>"", "intelligence"=>"", "wisdom"=>"", "charisma"=>"", "healthmax"=>"", "healthcurrent"=>"", "healthtemp"=>"", "speed"=>"", "character"=>{"cfirstname"=>"Why", "cmiddlename"=>"Do you", "clastname"=>"Make me do this", "raceid"=>"", "classid"=>"", "alignmentid"=>"", "languageid"=>"", "inventoryid"=>"", "strength"=>"", "dexterity"=>"", "constitution"=>"", "intelligence"=>"", "wisdom"=>"", "charisma"=>"", "healthmax"=>"", "healthcurrent"=>"", "healthtemp"=>"", "speed"=>""}}
+  [1m[36mUser Load (25.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (4.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/characters_controller.rb:51:in `create'
+  [1m[36mCharacter Create (22.8ms)[0m  [1m[32mINSERT INTO "characters" ("user_id", "cfirstname", "cmiddlename", "clastname", "raceid", "classid", "alignmentid", "languageid", "inventoryid", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["user_id", "8"], ["cfirstname", "Why"], ["cmiddlename", "Do you"], ["clastname", "Make me do this"], ["raceid", ""], ["classid", ""], ["alignmentid", ""], ["languageid", ""], ["inventoryid", ""], ["created_at", "2021-05-05 00:41:45.825477"], ["updated_at", "2021-05-05 00:41:45.825477"]]
+  ↳ app/controllers/api/characters_controller.rb:51:in `create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/characters_controller.rb:51:in `create'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 0.4ms | Allocations: 51)
+Completed 200 OK in 145ms (Views: 1.9ms | ActiveRecord: 55.5ms | Allocations: 4067)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-04 20:41:53 -0400
+Processing by Api::CharactersController#index as JSON
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:41:53 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (134.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mCharacter Load (149.5ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "8"]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/characters/index.json.jb (Duration: 154.3ms | Allocations: 859)
+Completed 200 OK in 437ms (Views: 9.3ms | ActiveRecord: 284.3ms | Allocations: 4752)
+
+
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.3ms | Allocations: 45)
+Completed 200 OK in 1199ms (Views: 4.4ms | ActiveRecord: 39.4ms | Allocations: 7625)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:42:09 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (286.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 45)
+Completed 200 OK in 508ms (Views: 3.2ms | ActiveRecord: 286.8ms | Allocations: 1739)
+
+
+Started DELETE "/api/users/current_user/" for ::1 at 2021-05-04 20:42:11 -0400
+Processing by Api::UsersController#destroy as JSON
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (18.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+  [1m[36mUser Destroy (5.9ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 8]]
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+Completed 200 OK in 74ms (Views: 0.3ms | ActiveRecord: 31.1ms | Allocations: 3195)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-04 20:42:18 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sou7hernsaint@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 401 Unauthorized in 332ms (Views: 0.2ms | ActiveRecord: 2.5ms | Allocations: 877)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-04 20:42:25 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sou7hernsaint@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 298ms (Views: 0.3ms | ActiveRecord: 1.7ms | Allocations: 975)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:42:25 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 18ms (Views: 3.4ms | ActiveRecord: 2.1ms | Allocations: 1746)
+
+
+Started PATCH "/api/users/current_user/" for ::1 at 2021-05-04 20:42:37 -0400
+Processing by Api::UsersController#update as JSON
+  Parameters: {"ufirstname"=>"James", "ulastname"=>"Boyette", "email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "user"=>{"ufirstname"=>"James", "ulastname"=>"Boyette", "email"=>"sou7hernsaint@gmail.com"}}
+  [1m[36mUser Load (5.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mUser Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "sou7hernsaint@gmail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mUser Update (1.5ms)[0m  [1m[33mUPDATE "users" SET "ufirstname" = $1, "password_digest" = $2, "updated_at" = $3 WHERE "users"."id" = $4[0m  [["ufirstname", "James"], ["password_digest", "$2a$12$IuXmJId4HeodznVGDisDx.rr7LHyw5H9P.rQMmZ0Hg5ueDDdlnz36"], ["updated_at", "2021-05-05 00:42:38.233290"], ["id", 1]]
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mTRANSACTION (23.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.3ms | Allocations: 53)
+Completed 200 OK in 476ms (Views: 2.4ms | ActiveRecord: 33.7ms | Allocations: 4969)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-04 20:42:42 -0400
+Processing by Api::CharactersController#index as JSON
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:42:42 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (10.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCharacter Load (1.9ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "1"]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 922ms (Views: 7.2ms | ActiveRecord: 2.5ms | Allocations: 3889)
+
+
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/characters/index.json.jb (Duration: 428.4ms | Allocations: 2833)
+Completed 200 OK in 941ms (Views: 430.7ms | ActiveRecord: 12.0ms | Allocations: 7186)
+
+
+Started GET "/api/characters/1" for ::1 at 2021-05-04 20:43:03 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"1"}
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:43:03 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (4.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mUser Load (8.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.3ms | Allocations: 46)
+  [1m[36mCharacter Load (3.3ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 154ms (Views: 5.2ms | ActiveRecord: 8.4ms | Allocations: 2640)
+
+
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 0.3ms | Allocations: 53)
+Completed 200 OK in 1038ms (Views: 2.6ms | ActiveRecord: 7.7ms | Allocations: 5550)
+
+
+Started POST "/api/users" for ::1 at 2021-05-04 20:55:48 -0400
+Processing by Api::UsersController#create as JSON
+  Parameters: {"ufirstname"=>"Jessica", "ulastname"=>"Boyette", "email"=>"email@email.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"ufirstname"=>"Jessica", "ulastname"=>"Boyette", "email"=>"email@email.com"}}
+  [1m[36mTRANSACTION (6.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mUser Exists? (2.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mUser Create (1.9ms)[0m  [1m[32mINSERT INTO "users" ("ufirstname", "ulastname", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["ufirstname", "Jessica"], ["ulastname", "Boyette"], ["email", "email@email.com"], ["password_digest", "$2a$12$g74oK.kietcTF5wMICJaFuSRuTy20G3FyWhNVl4QLVpTfyHa4WLk6"], ["created_at", "2021-05-05 00:55:49.780683"], ["updated_at", "2021-05-05 00:55:49.780683"]]
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+Completed 201 Created in 830ms (Views: 1.3ms | ActiveRecord: 39.8ms | Allocations: 6397)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-04 20:56:06 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"email@email.com", "password"=>"[FILTERED]", "session"=>{"email"=>"email@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 729ms (Views: 0.3ms | ActiveRecord: 14.1ms | Allocations: 1190)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:56:07 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (65.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 5.8ms | Allocations: 45)
+Completed 200 OK in 141ms (Views: 8.8ms | ActiveRecord: 65.3ms | Allocations: 1743)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-04 20:56:14 -0400
+Processing by Api::CharactersController#index as JSON
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mCharacter Load (3.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "9"]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/characters/index.json.jb (Duration: 21.6ms | Allocations: 855)
+Completed 200 OK in 340ms (Views: 21.3ms | ActiveRecord: 6.7ms | Allocations: 2510)
+
+
+Started POST "/api/characters" for ::1 at 2021-05-04 20:56:26 -0400
+Processing by Api::CharactersController#create as JSON
+  Parameters: {"cfirstname"=>"Why ", "cmiddlename"=>"Must I", "clastname"=>"Do this?", "raceid"=>"", "classid"=>"", "alignmentid"=>"", "languageid"=>"", "inventoryid"=>"", "strength"=>"", "dexterity"=>"", "constitution"=>"", "intelligence"=>"", "wisdom"=>"", "charisma"=>"", "healthmax"=>"", "healthcurrent"=>"", "healthtemp"=>"", "speed"=>"", "character"=>{"cfirstname"=>"Why ", "cmiddlename"=>"Must I", "clastname"=>"Do this?", "raceid"=>"", "classid"=>"", "alignmentid"=>"", "languageid"=>"", "inventoryid"=>"", "strength"=>"", "dexterity"=>"", "constitution"=>"", "intelligence"=>"", "wisdom"=>"", "charisma"=>"", "healthmax"=>"", "healthcurrent"=>"", "healthtemp"=>"", "speed"=>""}}
+  [1m[36mUser Load (7.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/characters_controller.rb:51:in `create'
+  [1m[36mCharacter Create (1.7ms)[0m  [1m[32mINSERT INTO "characters" ("user_id", "cfirstname", "cmiddlename", "clastname", "raceid", "classid", "alignmentid", "languageid", "inventoryid", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["user_id", "9"], ["cfirstname", "Why "], ["cmiddlename", "Must I"], ["clastname", "Do this?"], ["raceid", ""], ["classid", ""], ["alignmentid", ""], ["languageid", ""], ["inventoryid", ""], ["created_at", "2021-05-05 00:56:26.108577"], ["updated_at", "2021-05-05 00:56:26.108577"]]
+  ↳ app/controllers/api/characters_controller.rb:51:in `create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/characters_controller.rb:51:in `create'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 0.3ms | Allocations: 51)
+Completed 200 OK in 118ms (Views: 1.7ms | ActiveRecord: 14.1ms | Allocations: 4069)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-04 20:56:31 -0400
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:56:31 -0400
+Processing by Api::CharactersController#index as JSON
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (83.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mCharacter Load (3.3ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "9"]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/characters/index.json.jb (Duration: 6.6ms | Allocations: 859)
+Completed 200 OK in 357ms (Views: 13.6ms | ActiveRecord: 86.7ms | Allocations: 3409)
+
+
+  [1m[36mUser Load (77.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.3ms | Allocations: 45)
+Completed 200 OK in 871ms (Views: 3.9ms | ActiveRecord: 115.0ms | Allocations: 7582)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:56:42 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (94.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 45)
+Completed 200 OK in 173ms (Views: 1.4ms | ActiveRecord: 94.4ms | Allocations: 1742)
+
+
+Started DELETE "/api/users/current_user/" for ::1 at 2021-05-04 20:56:43 -0400
+Processing by Api::UsersController#destroy as JSON
+  [1m[36mUser Load (18.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (35.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+  [1m[36mUser Destroy (1.8ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 9]]
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+Completed 200 OK in 150ms (Views: 0.4ms | ActiveRecord: 58.2ms | Allocations: 3194)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-04 20:56:52 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sou7hernsaint@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 401 Unauthorized in 336ms (Views: 0.3ms | ActiveRecord: 1.0ms | Allocations: 877)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-04 20:56:59 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sou7hernsaint@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 377ms (Views: 0.3ms | ActiveRecord: 0.8ms | Allocations: 975)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:57:00 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (29.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.4ms | Allocations: 46)
+Completed 200 OK in 59ms (Views: 4.2ms | ActiveRecord: 29.1ms | Allocations: 1749)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-04 20:57:08 -0400
+Processing by Api::CharactersController#index as JSON
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:57:08 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (470.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mCharacter Load (2.5ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "1"]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/characters/index.json.jb (Duration: 44.9ms | Allocations: 1034)
+Completed 200 OK in 693ms (Views: 55.3ms | ActiveRecord: 473.0ms | Allocations: 5502)
+
+
+  [1m[36mUser Load (534.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.3ms | Allocations: 47)
+Completed 200 OK in 827ms (Views: 1.7ms | ActiveRecord: 534.4ms | Allocations: 5297)
+
+
+Started GET "/api/characters/1" for ::1 at 2021-05-04 20:57:14 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"1"}
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 20:57:14 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (9.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCharacter Load (153.8ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  [1m[36mUser Load (5.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/show.json.jb
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendered api/characters/show.json.jb (Duration: 0.3ms | Allocations: 53)
+  Rendering api/users/show.json.jb
+Completed 200 OK in 1047ms (Views: 490.0ms | ActiveRecord: 163.3ms | Allocations: 5195)
+
+
+  Rendered api/users/show.json.jb (Duration: 1.3ms | Allocations: 46)
+Completed 200 OK in 1043ms (Views: 4.8ms | ActiveRecord: 5.8ms | Allocations: 3713)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-04 22:27:38 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sou7hernsaint@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 401 Unauthorized in 623ms (Views: 4.4ms | ActiveRecord: 137.6ms | Allocations: 4021)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-04 22:27:42 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (7.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sou7hernsaint@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 401 Unauthorized in 668ms (Views: 0.3ms | ActiveRecord: 7.3ms | Allocations: 873)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-04 22:27:48 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sou7hernsaint@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 252ms (Views: 0.4ms | ActiveRecord: 0.8ms | Allocations: 975)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 22:27:49 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.7ms | Allocations: 46)
+Completed 200 OK in 35ms (Views: 9.2ms | ActiveRecord: 1.3ms | Allocations: 1751)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 22:29:34 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (184.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 2.0ms | Allocations: 46)
+Completed 200 OK in 413ms (Views: 10.3ms | ActiveRecord: 184.8ms | Allocations: 1746)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 22:30:20 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (4.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 4.0ms | Allocations: 46)
+Completed 200 OK in 129ms (Views: 8.9ms | ActiveRecord: 4.5ms | Allocations: 1746)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 22:31:15 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (13.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 71ms (Views: 5.4ms | ActiveRecord: 13.1ms | Allocations: 1746)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 22:32:01 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (62.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 3.0ms | Allocations: 46)
+Completed 200 OK in 115ms (Views: 10.8ms | ActiveRecord: 62.1ms | Allocations: 1746)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 22:35:39 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (10.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 1.0ms | Allocations: 46)
+Completed 200 OK in 174ms (Views: 10.2ms | ActiveRecord: 10.9ms | Allocations: 1749)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 22:36:28 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (17.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 33ms (Views: 2.2ms | ActiveRecord: 17.5ms | Allocations: 1746)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 22:39:31 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (47.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 24.7ms | Allocations: 46)
+Completed 200 OK in 186ms (Views: 32.5ms | ActiveRecord: 47.1ms | Allocations: 1746)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-04 22:39:38 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (44.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sou7hernsaint@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 401 Unauthorized in 301ms (Views: 1.8ms | ActiveRecord: 44.4ms | Allocations: 871)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-04 22:39:48 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sou7hernsaint@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 253ms (Views: 0.4ms | ActiveRecord: 1.3ms | Allocations: 976)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 22:39:49 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 13ms (Views: 1.1ms | ActiveRecord: 0.7ms | Allocations: 1747)
+
+
+Started PATCH "/api/users/current_user/" for ::1 at 2021-05-04 22:40:00 -0400
+Processing by Api::UsersController#update as JSON
+  Parameters: {"ufirstname"=>"James", "ulastname"=>"Boyette", "email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "user"=>{"ufirstname"=>"James", "ulastname"=>"Boyette", "email"=>"sou7hernsaint@gmail.com"}}
+  [1m[36mUser Load (42.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (3.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mUser Exists? (35.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "sou7hernsaint@gmail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mUser Update (46.2ms)[0m  [1m[33mUPDATE "users" SET "password_digest" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["password_digest", "$2a$12$Vx.xNXKY0IFaq17IWrp6HevjiMkyW3Tr0mjsnLn3WXI05hQDrIXda"], ["updated_at", "2021-05-05 02:40:00.821853"], ["id", 1]]
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mTRANSACTION (43.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 53)
+Completed 200 OK in 457ms (Views: 1.1ms | ActiveRecord: 170.5ms | Allocations: 4962)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 22:40:14 -0400
+Processing by Api::UsersController#show as JSON
+Started GET "/api/characters/" for ::1 at 2021-05-04 22:40:14 -0400
+Processing by Api::CharactersController#index as JSON
+  [1m[36mUser Load (52.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 87ms (Views: 1.3ms | ActiveRecord: 52.2ms | Allocations: 3822)
+
+
+  [1m[36mUser Load (12.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mCharacter Load (44.0ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "1"]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/characters/index.json.jb (Duration: 67.1ms | Allocations: 1035)
+Completed 200 OK in 434ms (Views: 25.3ms | ActiveRecord: 218.1ms | Allocations: 8742)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 22:40:16 -0400
+Started GET "/api/characters/1" for ::1 at 2021-05-04 22:40:16 -0400
+Processing by Api::UsersController#show as JSON
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (16.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 77ms (Views: 1.8ms | ActiveRecord: 16.4ms | Allocations: 2407)
+
+
+  [1m[36mUser Load (51.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCharacter Load (2.1ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 0.3ms | Allocations: 53)
+Completed 200 OK in 207ms (Views: 1.9ms | ActiveRecord: 53.5ms | Allocations: 4058)
+
+
+Started GET "/api/characters/1" for ::1 at 2021-05-04 22:40:32 -0400
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 22:40:32 -0400
+Processing by Api::UsersController#show as JSON
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (61.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 3.5ms | Allocations: 46)
+Completed 200 OK in 105ms (Views: 4.8ms | ActiveRecord: 61.6ms | Allocations: 2078)
+
+
+  [1m[36mUser Load (34.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCharacter Load (1.9ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 0.4ms | Allocations: 53)
+Completed 200 OK in 189ms (Views: 4.8ms | ActiveRecord: 36.5ms | Allocations: 4037)
+
+
+Started GET "/api/characters/1" for ::1 at 2021-05-04 22:41:02 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"1"}
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 22:41:02 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (3.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCharacter Load (3.8ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendered api/characters/show.json.jb (Duration: 0.2ms | Allocations: 53)
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 365ms (Views: 2.9ms | ActiveRecord: 6.9ms | Allocations: 5197)
+
+
+Completed 200 OK in 349ms (Views: 3.2ms | ActiveRecord: 1.9ms | Allocations: 3706)
+
+
+Started GET "/api/characters/1" for ::1 at 2021-05-04 22:41:40 -0400
+Started GET "/api/users/current_user" for ::1 at 2021-05-04 22:41:40 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"1"}
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (44.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mUser Load (74.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 108ms (Views: 5.3ms | ActiveRecord: 74.2ms | Allocations: 2482)
+
+
+  [1m[36mCharacter Load (101.0ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 0.3ms | Allocations: 53)
+Completed 200 OK in 421ms (Views: 2.1ms | ActiveRecord: 145.4ms | Allocations: 4207)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 17:39:46 -0400
+Started GET "/api/characters/1" for ::1 at 2021-05-05 17:39:46 -0400
+  [1m[35m (3.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"1"}
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mUser Load (30.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+DEPRECATION WARNING: Rendering actions with '.' in the name is deprecated: api/users/show.json.jb (called from show at /Users/jamesboyette/Dropbox/++_Actualize/capstone/DnD_Aid_app/app/controllers/api/users_controller.rb:25)
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 2.0ms | Allocations: 284)
+Completed 200 OK in 170ms (Views: 22.9ms | ActiveRecord: 108.0ms | Allocations: 18798)
+
+
+  [1m[36mCharacter Load (42.3ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+DEPRECATION WARNING: Rendering actions with '.' in the name is deprecated: api/characters/show.json.jb (called from show at /Users/jamesboyette/Dropbox/++_Actualize/capstone/DnD_Aid_app/app/controllers/api/characters_controller.rb:65)
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 4.1ms | Allocations: 175)
+Completed 200 OK in 390ms (Views: 62.3ms | ActiveRecord: 83.6ms | Allocations: 31917)
+
+
+Started GET "/api/characters/1" for ::1 at 2021-05-05 17:40:39 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (4.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 17:40:39 -0400
+  [1m[36mCharacter Load (2.5ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 0.2ms | Allocations: 54)
+Completed 200 OK in 16ms (Views: 1.3ms | ActiveRecord: 6.5ms | Allocations: 3387)
+
+
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 47)
+Completed 200 OK in 29ms (Views: 1.1ms | ActiveRecord: 1.4ms | Allocations: 2097)
+
+
+Started GET "/api/characters/1" for ::1 at 2021-05-05 17:40:41 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"1"}
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 17:40:41 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mUser Load (42.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 83ms (Views: 2.8ms | ActiveRecord: 42.6ms | Allocations: 2475)
+
+
+  [1m[36mCharacter Load (1.8ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 0.2ms | Allocations: 53)
+Completed 200 OK in 135ms (Views: 1.5ms | ActiveRecord: 3.6ms | Allocations: 5401)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-05 17:41:19 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (42.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sou7hernsaint@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 301ms (Views: 0.6ms | ActiveRecord: 42.3ms | Allocations: 1185)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 17:41:19 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 22ms (Views: 1.4ms | ActiveRecord: 1.3ms | Allocations: 1747)
+
+
+Started PATCH "/api/users/current_user/" for ::1 at 2021-05-05 17:41:36 -0400
+Processing by Api::UsersController#update as JSON
+  Parameters: {"ufirstname"=>"Michael", "ulastname"=>"Boyette", "email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "user"=>{"ufirstname"=>"Michael", "ulastname"=>"Boyette", "email"=>"sou7hernsaint@gmail.com"}}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mUser Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "sou7hernsaint@gmail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mUser Update (29.3ms)[0m  [1m[33mUPDATE "users" SET "ufirstname" = $1, "password_digest" = $2, "updated_at" = $3 WHERE "users"."id" = $4[0m  [["ufirstname", "Michael"], ["password_digest", "$2a$12$zNHZJRFZJsgly5RRAH0UHu90kxvbef4wmqdDWJkfFzl/3ZqMPpSI2"], ["updated_at", "2021-05-05 21:41:36.810033"], ["id", 1]]
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mTRANSACTION (26.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.1ms | Allocations: 53)
+Completed 200 OK in 321ms (Views: 0.9ms | ActiveRecord: 59.7ms | Allocations: 5734)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-05 17:41:48 -0400
+Processing by Api::CharactersController#index as JSON
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 17:41:48 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (50.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+DEPRECATION WARNING: Rendering actions with '.' in the name is deprecated: api/characters/index.json.jb (called from index at /Users/jamesboyette/Dropbox/++_Actualize/capstone/DnD_Aid_app/app/controllers/api/characters_controller.rb:19)
+  Rendering api/characters/index.json.jb
+  [1m[36mUser Load (117.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCharacter Load (1.5ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "1"]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendering api/users/show.json.jb
+  Rendered api/characters/index.json.jb (Duration: 51.8ms | Allocations: 3057)
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 141ms (Views: 76.3ms | ActiveRecord: 51.5ms | Allocations: 8451)
+
+
+Completed 200 OK in 138ms (Views: 3.9ms | ActiveRecord: 117.0ms | Allocations: 7812)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 17:42:53 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (5.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.3ms | Allocations: 47)
+Completed 200 OK in 20ms (Views: 1.4ms | ActiveRecord: 5.3ms | Allocations: 1765)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-05 17:43:06 -0400
+Processing by Api::CharactersController#index as JSON
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 17:43:06 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (3.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 34ms (Views: 2.5ms | ActiveRecord: 2.9ms | Allocations: 3306)
+
+
+  [1m[36mCharacter Load (11.5ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "1"]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/characters/index.json.jb (Duration: 16.2ms | Allocations: 1651)
+Completed 200 OK in 57ms (Views: 8.0ms | ActiveRecord: 14.7ms | Allocations: 7359)
+
+
+Started GET "/api/characters/1" for ::1 at 2021-05-05 17:43:09 -0400
+Processing by Api::CharactersController#show as JSON
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 17:43:09 -0400
+  Parameters: {"id"=>"1"}
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (79.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCharacter Load (9.8ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 0.3ms | Allocations: 53)
+Completed 200 OK in 124ms (Views: 1.4ms | ActiveRecord: 88.9ms | Allocations: 2630)
+
+
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.1ms | Allocations: 46)
+Completed 200 OK in 135ms (Views: 1.3ms | ActiveRecord: 2.3ms | Allocations: 4036)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 17:48:01 -0400
+Started GET "/api/characters/undefined" for ::1 at 2021-05-05 17:48:01 -0400
+Processing by Api::UsersController#show as JSON
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"undefined"}
+  [1m[36mUser Load (4.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (8.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendered api/users/show.json.jb (Duration: 1.6ms | Allocations: 46)
+Completed 200 OK in 69ms (Views: 11.4ms | ActiveRecord: 4.6ms | Allocations: 3146)
+
+
+  [1m[36mCharacter Load (1.7ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 179.9ms | Allocations: 3965)
+Completed 500 Internal Server Error in 242ms (ActiveRecord: 10.2ms | Allocations: 7400)
+
+
+  
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+    1: {
+    2:   message: "Let's see that swEet character!",
+    3:   id: @character.id,
+    4:   user_id: @character.user_id,
+    5:   cfirstname: @character.cfirstname,
+    6:   cmiddlename: @character.cmiddlename,
+  
+app/views/api/characters/show.json.jb:3
+app/controllers/api/characters_controller.rb:65:in `show'
+Started GET "/api/characters/undefined" for ::1 at 2021-05-05 17:50:36 -0400
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 17:50:36 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"undefined"}
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (6.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 21ms (Views: 1.2ms | ActiveRecord: 2.8ms | Allocations: 2482)
+
+
+  [1m[36mCharacter Load (4.3ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 3.1ms | Allocations: 1388)
+Completed 500 Internal Server Error in 32ms (ActiveRecord: 10.7ms | Allocations: 5019)
+
+
+  
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+    1: {
+    2:   message: "Let's see that swEet character!",
+    3:   id: @character.id,
+    4:   user_id: @character.user_id,
+    5:   cfirstname: @character.cfirstname,
+    6:   cmiddlename: @character.cmiddlename,
+  
+app/views/api/characters/show.json.jb:3
+app/controllers/api/characters_controller.rb:65:in `show'
+Started GET "/api/characters/undefined" for ::1 at 2021-05-05 17:50:59 -0400
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 17:50:59 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"undefined"}
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCharacter Load (20.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 4.1ms | Allocations: 1388)
+Completed 500 Internal Server Error in 49ms (ActiveRecord: 21.1ms | Allocations: 3732)
+
+
+  
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+    1: {
+    2:   message: "Let's see that swEet character!",
+    3:   id: @character.id,
+    4:   user_id: @character.user_id,
+    5:   cfirstname: @character.cfirstname,
+    6:   cmiddlename: @character.cmiddlename,
+  
+app/views/api/characters/show.json.jb:3
+app/controllers/api/characters_controller.rb:65:in `show'
+  [1m[36mUser Load (33.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 552ms (Views: 1.1ms | ActiveRecord: 33.8ms | Allocations: 45023)
+
+
+Started GET "/api/characters/undefined" for ::1 at 2021-05-05 17:52:06 -0400
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 17:52:06 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"undefined"}
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (3.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 13ms (Views: 1.1ms | ActiveRecord: 3.0ms | Allocations: 2482)
+
+
+  [1m[36mCharacter Load (17.6ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 1.3ms | Allocations: 1388)
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 20.8ms | Allocations: 5629)
+
+
+  
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+    1: {
+    2:   message: "Let's see that swEet character!",
+    3:   id: @character.id,
+    4:   user_id: @character.user_id,
+    5:   cfirstname: @character.cfirstname,
+    6:   cmiddlename: @character.cmiddlename,
+  
+app/views/api/characters/show.json.jb:3
+app/controllers/api/characters_controller.rb:65:in `show'
+Started GET "/api/characters/undefined" for ::1 at 2021-05-05 17:58:48 -0400
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 17:58:48 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"undefined"}
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (6.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.7ms | Allocations: 46)
+Completed 200 OK in 358ms (Views: 6.3ms | ActiveRecord: 323.6ms | Allocations: 8495)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 17:58:49 -0400
+  [1m[36mCharacter Load (17.6ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+Processing by Api::UsersController#show as JSON
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 4.1ms | Allocations: 1388)
+Completed 500 Internal Server Error in 428ms (ActiveRecord: 298.4ms | Allocations: 13676)
+
+
+  
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+    1: {
+    2:   message: "Let's see that swEet character!",
+    3:   id: @character.id,
+    4:   user_id: @character.user_id,
+    5:   cfirstname: @character.cfirstname,
+    6:   cmiddlename: @character.cmiddlename,
+  
+app/views/api/characters/show.json.jb:3
+app/controllers/api/characters_controller.rb:65:in `show'
+  [1m[36mUser Load (114.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 327ms (Views: 1.4ms | ActiveRecord: 114.0ms | Allocations: 107565)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 17:58:49 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.1ms | Allocations: 46)
+Completed 200 OK in 8ms (Views: 1.1ms | ActiveRecord: 2.0ms | Allocations: 2679)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 17:58:49 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 14ms (Views: 1.6ms | ActiveRecord: 1.8ms | Allocations: 4062)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 17:58:49 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.1ms | Allocations: 46)
+Completed 200 OK in 8ms (Views: 0.8ms | ActiveRecord: 1.9ms | Allocations: 2119)
+
+
+Started GET "/api/characters/undefined" for ::1 at 2021-05-05 17:58:49 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"undefined"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCharacter Load (1.5ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 2.7ms | Allocations: 1388)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 2.3ms | Allocations: 3096)
+
+
+  
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+    1: {
+    2:   message: "Let's see that swEet character!",
+    3:   id: @character.id,
+    4:   user_id: @character.user_id,
+    5:   cfirstname: @character.cfirstname,
+    6:   cmiddlename: @character.cmiddlename,
+  
+app/views/api/characters/show.json.jb:3
+app/controllers/api/characters_controller.rb:65:in `show'
+Started GET "/api/characters/undefined" for ::1 at 2021-05-05 17:58:50 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"undefined"}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCharacter Load (1.3ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 1.4ms | Allocations: 1388)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 3.2ms | Allocations: 3095)
+
+
+  
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+    1: {
+    2:   message: "Let's see that swEet character!",
+    3:   id: @character.id,
+    4:   user_id: @character.user_id,
+    5:   cfirstname: @character.cfirstname,
+    6:   cmiddlename: @character.cmiddlename,
+  
+app/views/api/characters/show.json.jb:3
+app/controllers/api/characters_controller.rb:65:in `show'
+Started GET "/api/characters/undefined" for ::1 at 2021-05-05 17:58:50 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"undefined"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCharacter Load (0.9ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 2.2ms | Allocations: 1388)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 1.8ms | Allocations: 3095)
+
+
+  
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+    1: {
+    2:   message: "Let's see that swEet character!",
+    3:   id: @character.id,
+    4:   user_id: @character.user_id,
+    5:   cfirstname: @character.cfirstname,
+    6:   cmiddlename: @character.cmiddlename,
+  
+app/views/api/characters/show.json.jb:3
+app/controllers/api/characters_controller.rb:65:in `show'
+Started GET "/api/characters/undefined" for ::1 at 2021-05-05 17:58:50 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"undefined"}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCharacter Load (0.9ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 1.4ms | Allocations: 1388)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 2.1ms | Allocations: 3095)
+
+
+  
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+    1: {
+    2:   message: "Let's see that swEet character!",
+    3:   id: @character.id,
+    4:   user_id: @character.user_id,
+    5:   cfirstname: @character.cfirstname,
+    6:   cmiddlename: @character.cmiddlename,
+  
+app/views/api/characters/show.json.jb:3
+app/controllers/api/characters_controller.rb:65:in `show'
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 17:59:46 -0400
+Started GET "/api/characters/undefined" for ::1 at 2021-05-05 17:59:46 -0400
+Processing by Api::UsersController#show as JSON
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"undefined"}
+  [1m[36mUser Load (10.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (10.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+  [1m[36mCharacter Load (3.0ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+Completed 200 OK in 53ms (Views: 11.6ms | ActiveRecord: 10.5ms | Allocations: 2827)
+
+
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 2.3ms | Allocations: 1388)
+Completed 500 Internal Server Error in 55ms (ActiveRecord: 13.6ms | Allocations: 4868)
+
+
+  
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+    1: {
+    2:   message: "Let's see that swEet character!",
+    3:   id: @character.id,
+    4:   user_id: @character.user_id,
+    5:   cfirstname: @character.cfirstname,
+    6:   cmiddlename: @character.cmiddlename,
+  
+app/views/api/characters/show.json.jb:3
+app/controllers/api/characters_controller.rb:65:in `show'
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 17:59:54 -0400
+Started GET "/api/characters/undefined" for ::1 at 2021-05-05 17:59:54 -0400
+Processing by Api::UsersController#show as JSON
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"undefined"}
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (5.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 15ms (Views: 1.9ms | ActiveRecord: 3.7ms | Allocations: 2667)
+
+
+  [1m[36mCharacter Load (2.9ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 1.4ms | Allocations: 1388)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 8.5ms | Allocations: 4822)
+
+
+  
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+    1: {
+    2:   message: "Let's see that swEet character!",
+    3:   id: @character.id,
+    4:   user_id: @character.user_id,
+    5:   cfirstname: @character.cfirstname,
+    6:   cmiddlename: @character.cmiddlename,
+  
+app/views/api/characters/show.json.jb:3
+app/controllers/api/characters_controller.rb:65:in `show'
+Started POST "/api/users" for ::1 at 2021-05-05 18:00:54 -0400
+Processing by Api::UsersController#create as JSON
+  Parameters: {"ufirstname"=>"blah", "ulastname"=>"blah", "email"=>"blah@email.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"ufirstname"=>"blah", "ulastname"=>"blah", "email"=>"blah@email.com"}}
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mUser Exists? (1.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "blah@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mUser Create (5.3ms)[0m  [1m[32mINSERT INTO "users" ("ufirstname", "ulastname", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["ufirstname", "blah"], ["ulastname", "blah"], ["email", "blah@email.com"], ["password_digest", "$2a$12$toNVuSYDBxHeHP1gk8P6f.pS4SdVX375R.3XvCgIFwNMZ/Fcb4nO."], ["created_at", "2021-05-05 22:00:54.490449"], ["updated_at", "2021-05-05 22:00:54.490449"]]
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+Completed 201 Created in 268ms (Views: 0.2ms | ActiveRecord: 9.1ms | Allocations: 3620)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-05 18:01:05 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"blah@email.com", "password"=>"[FILTERED]", "session"=>{"email"=>"blah@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "blah@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 254ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 978)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 18:01:05 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.7ms | Allocations: 45)
+Completed 200 OK in 10ms (Views: 2.5ms | ActiveRecord: 1.4ms | Allocations: 1739)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-05 19:12:49 -0400
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sou7hernsaint@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 375ms (Views: 0.4ms | ActiveRecord: 36.6ms | Allocations: 10079)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 19:12:50 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+DEPRECATION WARNING: Rendering actions with '.' in the name is deprecated: api/users/show.json.jb (called from show at /Users/jamesboyette/Dropbox/++_Actualize/capstone/DnD_Aid_app/app/controllers/api/users_controller.rb:25)
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 1.4ms | Allocations: 267)
+Completed 200 OK in 49ms (Views: 28.6ms | ActiveRecord: 3.0ms | Allocations: 4647)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 19:12:53 -0400
+Started GET "/api/characters/" for ::1 at 2021-05-05 19:12:53 -0400
+Processing by Api::UsersController#show as JSON
+Processing by Api::CharactersController#index as JSON
+  [1m[36mUser Load (7.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 47)
+Completed 200 OK in 37ms (Views: 3.4ms | ActiveRecord: 7.2ms | Allocations: 3528)
+
+
+  [1m[36mUser Load (10.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+DEPRECATION WARNING: Rendering actions with '.' in the name is deprecated: api/characters/index.json.jb (called from index at /Users/jamesboyette/Dropbox/++_Actualize/capstone/DnD_Aid_app/app/controllers/api/characters_controller.rb:19)
+  Rendering api/characters/index.json.jb
+  [1m[36mCharacter Load (72.0ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "1"]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/characters/index.json.jb (Duration: 220.6ms | Allocations: 12952)
+Completed 200 OK in 580ms (Views: 94.2ms | ActiveRecord: 340.5ms | Allocations: 23366)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 19:12:55 -0400
+Processing by Api::UsersController#show as JSON
+Started GET "/api/characters/1" for ::1 at 2021-05-05 19:12:55 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 47)
+Completed 200 OK in 38ms (Views: 1.1ms | ActiveRecord: 3.7ms | Allocations: 4537)
+
+
+  [1m[36mCharacter Load (129.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+DEPRECATION WARNING: Rendering actions with '.' in the name is deprecated: api/characters/show.json.jb (called from show at /Users/jamesboyette/Dropbox/++_Actualize/capstone/DnD_Aid_app/app/controllers/api/characters_controller.rb:65)
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 1.4ms | Allocations: 126)
+Completed 200 OK in 202ms (Views: 42.9ms | ActiveRecord: 131.7ms | Allocations: 4638)
+
+
+Started POST "/api/users" for ::1 at 2021-05-05 19:13:15 -0400
+Processing by Api::UsersController#create as JSON
+  Parameters: {"ufirstname"=>"Your first name", "ulastname"=>"Your last name", "email"=>"email@email.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"ufirstname"=>"Your first name", "ulastname"=>"Your last name", "email"=>"email@email.com"}}
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mUser Create (34.7ms)[0m  [1m[32mINSERT INTO "users" ("ufirstname", "ulastname", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["ufirstname", "Your first name"], ["ulastname", "Your last name"], ["email", "email@email.com"], ["password_digest", "$2a$12$zwrWjIGsWfOcOPAB64oevunMDJpN2k.xD8TZWNiYIQRxAtPBE2p.q"], ["created_at", "2021-05-05 23:13:15.286698"], ["updated_at", "2021-05-05 23:13:15.286698"]]
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+Completed 201 Created in 319ms (Views: 0.4ms | ActiveRecord: 38.9ms | Allocations: 4229)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-05 19:13:22 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"email@email.com", "password"=>"[FILTERED]", "session"=>{"email"=>"email@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 268ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 973)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 19:13:23 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.3ms | Allocations: 45)
+Completed 200 OK in 13ms (Views: 2.3ms | ActiveRecord: 1.3ms | Allocations: 1739)
+
+
+Started DELETE "/api/users/current_user/" for ::1 at 2021-05-05 19:13:25 -0400
+Processing by Api::UsersController#destroy as JSON
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+  [1m[36mUser Destroy (2.8ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 11]]
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+  [1m[36mTRANSACTION (2.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+Completed 200 OK in 23ms (Views: 0.4ms | ActiveRecord: 7.7ms | Allocations: 3275)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-05 19:18:58 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sou7hernsaint@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 324ms (Views: 0.3ms | ActiveRecord: 52.8ms | Allocations: 4127)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 19:18:58 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (8.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.1ms | Allocations: 46)
+Completed 200 OK in 19ms (Views: 1.1ms | ActiveRecord: 8.8ms | Allocations: 1750)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-05 19:19:02 -0400
+Processing by Api::CharactersController#index as JSON
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 19:19:02 -0400
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+Processing by Api::UsersController#show as JSON
+  Rendering api/characters/index.json.jb
+  [1m[36mCharacter Load (2.3ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "1"]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/characters/index.json.jb (Duration: 6.8ms | Allocations: 1035)
+Completed 200 OK in 23ms (Views: 9.7ms | ActiveRecord: 4.0ms | Allocations: 5559)
+
+
+  [1m[36mUser Load (3.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 185ms (Views: 2.1ms | ActiveRecord: 25.3ms | Allocations: 7301)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 19:47:36 -0400
+Processing by Api::UsersController#show as JSON
+Completed 200 OK in 2ms (Views: 1.3ms | Allocations: 623)
+
+
+Started GET "/api/characters/undefined" for ::1 at 2021-05-05 19:47:36 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"undefined"}
+Completed 200 OK in 1ms (Views: 0.4ms | Allocations: 159)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-05 20:18:41 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sou7hernsaint@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 290ms (Views: 0.2ms | ActiveRecord: 16.3ms | Allocations: 4073)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 20:18:41 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.4ms | Allocations: 46)
+Completed 200 OK in 9ms (Views: 1.9ms | ActiveRecord: 1.2ms | Allocations: 1750)
+
+
+Started POST "/api/users" for ::1 at 2021-05-05 20:40:43 -0400
+Processing by Api::UsersController#create as JSON
+  Parameters: {"ufirstname"=>"Your first name", "ulastname"=>"Your last name", "email"=>"email@email.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"ufirstname"=>"Your first name", "ulastname"=>"Your last name", "email"=>"email@email.com"}}
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mUser Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mUser Create (1.2ms)[0m  [1m[32mINSERT INTO "users" ("ufirstname", "ulastname", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["ufirstname", "Your first name"], ["ulastname", "Your last name"], ["email", "email@email.com"], ["password_digest", "$2a$12$JZ.EwxXlk66JNvh5lnoD9uXHhGPlI6HXfexUa1kE0oFgEmWdJrCuq"], ["created_at", "2021-05-06 00:40:43.740988"], ["updated_at", "2021-05-06 00:40:43.740988"]]
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+Completed 201 Created in 286ms (Views: 0.2ms | ActiveRecord: 15.4ms | Allocations: 6379)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-05 20:40:52 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"email@email.com", "password"=>"[FILTERED]", "session"=>{"email"=>"email@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 261ms (Views: 0.2ms | ActiveRecord: 2.5ms | Allocations: 1189)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 20:40:52 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.7ms | Allocations: 45)
+Completed 200 OK in 18ms (Views: 2.0ms | ActiveRecord: 1.3ms | Allocations: 1743)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-05 20:41:00 -0400
+Processing by Api::CharactersController#index as JSON
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mCharacter Load (5.9ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "12"]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/characters/index.json.jb (Duration: 12.2ms | Allocations: 857)
+Completed 200 OK in 34ms (Views: 7.6ms | ActiveRecord: 8.6ms | Allocations: 2512)
+
+
+Started POST "/api/characters" for ::1 at 2021-05-05 20:41:04 -0400
+Processing by Api::CharactersController#create as JSON
+  Parameters: {"cfirstname"=>"First", "cmiddlename"=>"Middle or Nick-Name", "clastname"=>"Last", "raceid"=>"", "classid"=>"", "alignmentid"=>"", "languageid"=>"", "inventoryid"=>"", "strength"=>"", "dexterity"=>"", "constitution"=>"", "intelligence"=>"", "wisdom"=>"", "charisma"=>"", "healthmax"=>"", "healthcurrent"=>"", "healthtemp"=>"", "speed"=>"", "character"=>{"cfirstname"=>"First", "cmiddlename"=>"Middle or Nick-Name", "clastname"=>"Last", "raceid"=>"", "classid"=>"", "alignmentid"=>"", "languageid"=>"", "inventoryid"=>"", "strength"=>"", "dexterity"=>"", "constitution"=>"", "intelligence"=>"", "wisdom"=>"", "charisma"=>"", "healthmax"=>"", "healthcurrent"=>"", "healthtemp"=>"", "speed"=>""}}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/characters_controller.rb:51:in `create'
+  [1m[36mCharacter Create (3.0ms)[0m  [1m[32mINSERT INTO "characters" ("user_id", "cfirstname", "cmiddlename", "clastname", "raceid", "classid", "alignmentid", "languageid", "inventoryid", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["user_id", "12"], ["cfirstname", "First"], ["cmiddlename", "Middle or Nick-Name"], ["clastname", "Last"], ["raceid", ""], ["classid", ""], ["alignmentid", ""], ["languageid", ""], ["inventoryid", ""], ["created_at", "2021-05-06 00:41:04.316043"], ["updated_at", "2021-05-06 00:41:04.316043"]]
+  ↳ app/controllers/api/characters_controller.rb:51:in `create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/characters_controller.rb:51:in `create'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 0.2ms | Allocations: 51)
+Completed 200 OK in 20ms (Views: 1.1ms | ActiveRecord: 6.8ms | Allocations: 4205)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-05 20:41:09 -0400
+Processing by Api::CharactersController#index as JSON
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 20:41:09 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mCharacter Load (102.8ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "12"]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/characters/index.json.jb (Duration: 106.4ms | Allocations: 860)
+Completed 200 OK in 146ms (Views: 6.1ms | ActiveRecord: 104.2ms | Allocations: 4744)
+
+
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 45)
+Completed 200 OK in 260ms (Views: 1.1ms | ActiveRecord: 43.5ms | Allocations: 7843)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 20:41:46 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (30.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.1ms | Allocations: 45)
+Completed 200 OK in 87ms (Views: 1.0ms | ActiveRecord: 30.2ms | Allocations: 1739)
+
+
+Started DELETE "/api/users/current_user/" for ::1 at 2021-05-05 20:41:47 -0400
+Processing by Api::UsersController#destroy as JSON
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+  [1m[36mUser Destroy (2.6ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 12]]
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+Completed 200 OK in 16ms (Views: 0.2ms | ActiveRecord: 7.0ms | Allocations: 3195)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-05 20:41:54 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sou7hernsaint@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 271ms (Views: 1.9ms | ActiveRecord: 0.9ms | Allocations: 980)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 20:41:55 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.3ms | Allocations: 46)
+Completed 200 OK in 16ms (Views: 1.5ms | ActiveRecord: 2.3ms | Allocations: 1747)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-05 20:41:58 -0400
+Processing by Api::CharactersController#index as JSON
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 20:41:58 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (18.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mUser Load (65.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCharacter Load (82.6ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "1"]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendering api/users/show.json.jb
+  Rendered api/characters/index.json.jb (Duration: 94.3ms | Allocations: 2413)
+Completed 200 OK in 125ms (Views: 15.0ms | ActiveRecord: 100.8ms | Allocations: 6808)
+
+
+  Rendered api/users/show.json.jb (Duration: 0.1ms | Allocations: 46)
+Completed 200 OK in 123ms (Views: 6.4ms | ActiveRecord: 65.8ms | Allocations: 5293)
+
+
+Started GET "/api/characters/1" for ::1 at 2021-05-05 20:42:10 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"1"}
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 20:42:10 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (20.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mUser Load (12.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 38ms (Views: 1.9ms | ActiveRecord: 12.2ms | Allocations: 2488)
+
+
+  [1m[36mCharacter Load (66.4ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 0.2ms | Allocations: 53)
+Completed 200 OK in 136ms (Views: 1.9ms | ActiveRecord: 86.8ms | Allocations: 5360)
+
+
+Started GET "/api/characters/undefined" for ::1 at 2021-05-05 20:43:03 -0400
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 20:43:03 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"undefined"}
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (9.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCharacter Load (4.8ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  [1m[36mUser Load (3.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered api/characters/show.json.jb (Duration: 22.1ms | Allocations: 4771)
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+Completed 500 Internal Server Error in 48ms (ActiveRecord: 14.1ms | Allocations: 6958)
+
+
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 52ms (Views: 3.1ms | ActiveRecord: 3.6ms | Allocations: 7693)
+
+
+  
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+    1: {
+    2:   message: "Let's see that swEet character!",
+    3:   id: @character.id,
+    4:   user_id: @character.user_id,
+    5:   cfirstname: @character.cfirstname,
+    6:   cmiddlename: @character.cmiddlename,
+  
+app/views/api/characters/show.json.jb:3
+app/controllers/api/characters_controller.rb:65:in `show'
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 20:43:46 -0400
+Started GET "/api/characters/" for ::1 at 2021-05-05 20:43:46 -0400
+Processing by Api::UsersController#show as JSON
+Processing by Api::CharactersController#index as JSON
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.1ms | Allocations: 46)
+Completed 200 OK in 25ms (Views: 1.1ms | ActiveRecord: 1.9ms | Allocations: 1915)
+
+
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mCharacter Load (1.6ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "1"]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/characters/index.json.jb (Duration: 4.5ms | Allocations: 989)
+Completed 200 OK in 86ms (Views: 6.4ms | ActiveRecord: 3.3ms | Allocations: 5527)
+
+
+Started GET "/api/characters/1" for ::1 at 2021-05-05 20:43:48 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"1"}
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 20:43:48 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (3.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (6.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 1.0ms | Allocations: 46)
+Completed 200 OK in 223ms (Views: 2.1ms | ActiveRecord: 3.2ms | Allocations: 2474)
+
+
+  [1m[36mCharacter Load (1.7ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 0.2ms | Allocations: 53)
+Completed 200 OK in 261ms (Views: 1.6ms | ActiveRecord: 8.5ms | Allocations: 5862)
+
+
+Started POST "/api/users" for ::1 at 2021-05-05 20:48:35 -0400
+Processing by Api::UsersController#create as JSON
+  Parameters: {"ufirstname"=>"Jessica", "ulastname"=>"Boyette", "email"=>"email@email.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "user"=>{"ufirstname"=>"Jessica", "ulastname"=>"Boyette", "email"=>"email@email.com"}}
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mUser Exists? (2.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mUser Create (1.2ms)[0m  [1m[32mINSERT INTO "users" ("ufirstname", "ulastname", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["ufirstname", "Jessica"], ["ulastname", "Boyette"], ["email", "email@email.com"], ["password_digest", "$2a$12$0r8BNcdh5jCTt2NSWkVzOupVrBCzmgGB3mx4O7K3kkomQ4xC3h59G"], ["created_at", "2021-05-06 00:48:36.194745"], ["updated_at", "2021-05-06 00:48:36.194745"]]
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:48:in `create'
+Completed 201 Created in 396ms (Views: 0.2ms | ActiveRecord: 6.2ms | Allocations: 3467)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-05 20:48:49 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"email@email.com", "password"=>"[FILTERED]", "session"=>{"email"=>"email@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 333ms (Views: 0.2ms | ActiveRecord: 1.7ms | Allocations: 973)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 20:48:49 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 45)
+Completed 200 OK in 26ms (Views: 1.8ms | ActiveRecord: 1.9ms | Allocations: 1739)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-05 20:48:56 -0400
+Processing by Api::CharactersController#index as JSON
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mCharacter Load (4.6ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "13"]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/characters/index.json.jb (Duration: 9.0ms | Allocations: 830)
+Completed 200 OK in 103ms (Views: 5.5ms | ActiveRecord: 5.9ms | Allocations: 2485)
+
+
+Started POST "/api/characters" for ::1 at 2021-05-05 20:49:07 -0400
+Processing by Api::CharactersController#create as JSON
+  Parameters: {"cfirstname"=>"That's", "cmiddlename"=>"Not ", "clastname"=>"Enough", "raceid"=>"", "classid"=>"", "alignmentid"=>"", "languageid"=>"", "inventoryid"=>"", "strength"=>"", "dexterity"=>"", "constitution"=>"", "intelligence"=>"", "wisdom"=>"", "charisma"=>"", "healthmax"=>"", "healthcurrent"=>"", "healthtemp"=>"", "speed"=>"", "character"=>{"cfirstname"=>"That's", "cmiddlename"=>"Not ", "clastname"=>"Enough", "raceid"=>"", "classid"=>"", "alignmentid"=>"", "languageid"=>"", "inventoryid"=>"", "strength"=>"", "dexterity"=>"", "constitution"=>"", "intelligence"=>"", "wisdom"=>"", "charisma"=>"", "healthmax"=>"", "healthcurrent"=>"", "healthtemp"=>"", "speed"=>""}}
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (4.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/characters_controller.rb:51:in `create'
+  [1m[36mCharacter Create (2.3ms)[0m  [1m[32mINSERT INTO "characters" ("user_id", "cfirstname", "cmiddlename", "clastname", "raceid", "classid", "alignmentid", "languageid", "inventoryid", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["user_id", "13"], ["cfirstname", "That's"], ["cmiddlename", "Not "], ["clastname", "Enough"], ["raceid", ""], ["classid", ""], ["alignmentid", ""], ["languageid", ""], ["inventoryid", ""], ["created_at", "2021-05-06 00:49:07.618314"], ["updated_at", "2021-05-06 00:49:07.618314"]]
+  ↳ app/controllers/api/characters_controller.rb:51:in `create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/characters_controller.rb:51:in `create'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 0.2ms | Allocations: 51)
+Completed 200 OK in 38ms (Views: 1.5ms | ActiveRecord: 11.5ms | Allocations: 4067)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-05 20:49:11 -0400
+Processing by Api::CharactersController#index as JSON
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 20:49:11 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (66.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mCharacter Load (213.6ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "13"]]
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/characters/index.json.jb (Duration: 216.8ms | Allocations: 859)
+Completed 200 OK in 303ms (Views: 4.5ms | ActiveRecord: 280.3ms | Allocations: 4818)
+
+
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 45)
+Completed 200 OK in 711ms (Views: 2.9ms | ActiveRecord: 54.3ms | Allocations: 7898)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 20:49:41 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (4.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 1.4ms | Allocations: 45)
+Completed 200 OK in 13ms (Views: 2.8ms | ActiveRecord: 5.0ms | Allocations: 1739)
+
+
+Started DELETE "/api/users/current_user/" for ::1 at 2021-05-05 20:49:42 -0400
+Processing by Api::UsersController#destroy as JSON
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+  [1m[36mUser Destroy (4.9ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 13]]
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:78:in `destroy'
+Completed 200 OK in 28ms (Views: 1.6ms | ActiveRecord: 11.2ms | Allocations: 3194)
+
+
+Started POST "/api/sessions" for ::1 at 2021-05-05 20:49:52 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sou7hernsaint@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:3:in `create'
+Completed 201 Created in 329ms (Views: 0.2ms | ActiveRecord: 1.9ms | Allocations: 980)
+
+
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 20:49:52 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (12.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+Completed 200 OK in 66ms (Views: 4.1ms | ActiveRecord: 12.4ms | Allocations: 1746)
+
+
+Started PATCH "/api/users/current_user/" for ::1 at 2021-05-05 20:50:04 -0400
+Processing by Api::UsersController#update as JSON
+  Parameters: {"ufirstname"=>"James", "ulastname"=>"Boyette", "email"=>"sou7hernsaint@gmail.com", "password"=>"[FILTERED]", "user"=>{"ufirstname"=>"James", "ulastname"=>"Boyette", "email"=>"sou7hernsaint@gmail.com"}}
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mUser Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "sou7hernsaint@gmail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mUser Update (41.1ms)[0m  [1m[33mUPDATE "users" SET "ufirstname" = $1, "password_digest" = $2, "updated_at" = $3 WHERE "users"."id" = $4[0m  [["ufirstname", "James"], ["password_digest", "$2a$12$MzGWWimo5e9Z6NTH0UY1Pu9g0jfeL21Bgtzuz6gVrpOFFe0N4pMU2"], ["updated_at", "2021-05-06 00:50:04.856877"], ["id", 1]]
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:65:in `update'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.1ms | Allocations: 53)
+Completed 200 OK in 378ms (Views: 0.8ms | ActiveRecord: 47.5ms | Allocations: 5112)
+
+
+Started GET "/api/characters/" for ::1 at 2021-05-05 20:50:07 -0400
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 20:50:07 -0400
+Processing by Api::CharactersController#index as JSON
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (30.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/characters/index.json.jb
+  [1m[36mUser Load (19.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCharacter Load (4.2ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."user_id" = $1[0m  [["user_id", "1"]]
+  Rendering api/users/show.json.jb
+  ↳ app/views/api/characters/index.json.jb:1:in `map'
+  Rendered api/users/show.json.jb (Duration: 0.2ms | Allocations: 46)
+  Rendered api/characters/index.json.jb (Duration: 41.3ms | Allocations: 2320)
+Completed 200 OK in 570ms (Views: 4.8ms | ActiveRecord: 19.4ms | Allocations: 4198)
+
+
+Completed 200 OK in 576ms (Views: 42.6ms | ActiveRecord: 34.8ms | Allocations: 5629)
+
+
+Started GET "/api/characters/1" for ::1 at 2021-05-05 20:50:20 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"1"}
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 20:50:20 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (20.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.3ms | Allocations: 46)
+Completed 200 OK in 101ms (Views: 1.8ms | ActiveRecord: 20.3ms | Allocations: 1896)
+
+
+  [1m[36mUser Load (253.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCharacter Load (1.7ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 0.8ms | Allocations: 53)
+Completed 200 OK in 422ms (Views: 2.5ms | ActiveRecord: 255.3ms | Allocations: 5873)
+
+
+Started GET "/api/characters/undefined" for ::1 at 2021-05-05 20:50:44 -0400
+Processing by Api::CharactersController#show as JSON
+  Parameters: {"id"=>"undefined"}
+Started GET "/api/users/current_user" for ::1 at 2021-05-05 20:50:44 -0400
+Processing by Api::UsersController#show as JSON
+  [1m[36mUser Load (55.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  [1m[36mCACHE User Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `current_user'
+  Rendering api/users/show.json.jb
+  Rendered api/users/show.json.jb (Duration: 0.4ms | Allocations: 46)
+  [1m[36mCharacter Load (246.5ms)[0m  [1m[34mSELECT "characters".* FROM "characters" WHERE "characters"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+Completed 200 OK in 533ms (Views: 387.7ms | ActiveRecord: 1.5ms | Allocations: 2643)
+
+
+  ↳ app/controllers/api/characters_controller.rb:64:in `show'
+  Rendering api/characters/show.json.jb
+  Rendered api/characters/show.json.jb (Duration: 2.3ms | Allocations: 1388)
+Completed 500 Internal Server Error in 558ms (ActiveRecord: 301.8ms | Allocations: 6674)
+
+
+  
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+    1: {
+    2:   message: "Let's see that swEet character!",
+    3:   id: @character.id,
+    4:   user_id: @character.user_id,
+    5:   cfirstname: @character.cfirstname,
+    6:   cmiddlename: @character.cmiddlename,
+  
+app/views/api/characters/show.json.jb:3
+app/controllers/api/characters_controller.rb:65:in `show'
