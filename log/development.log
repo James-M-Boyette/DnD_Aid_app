@@ -23241,3 +23241,13 @@ Processing by Api::CharactersController#index as JSON
 Completed 200 OK in 115ms (Views: 12.3ms | ActiveRecord: 67.1ms | Allocations: 3871)
 
 
+Started GET "/api/alignments/" for ::1 at 2021-05-12 21:02:58 -0400
+Processing by Api::AlignmentsController#index as */*
+DEPRECATION WARNING: Rendering actions with '.' in the name is deprecated: api/alignments/index.json.jb (called from index at /Users/jamesboyette/Dropbox/++_Actualize/capstone/DnD_Aid_app/app/controllers/api/alignments_controller.rb:5)
+  Rendering api/alignments/index.json.jb
+  [1m[36mAlignment Load (6.4ms)[0m  [1m[34mSELECT "alignments".* FROM "alignments"[0m
+  ↳ app/views/api/alignments/index.json.jb:1:in `map'
+  Rendered api/alignments/index.json.jb (Duration: 199.9ms | Allocations: 8203)
+Completed 200 OK in 268ms (Views: 249.3ms | ActiveRecord: 103.2ms | Allocations: 10521)
+
+
