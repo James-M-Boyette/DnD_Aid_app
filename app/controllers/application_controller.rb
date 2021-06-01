@@ -31,5 +31,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def index
+    # vue app
+    render :file => "public/index.html"
+  end
+
   helper_method :authenticate_user
 end
