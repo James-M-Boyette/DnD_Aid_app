@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "localhost:8080", "https://dnd-aid.netlify.api", "https://dnd-aid.netlify.api/"
+    origins "localhost:8080", "https://dnd-aid.netlify.app", "https://dnd-aid.netlify.app/", "https://dnd-aid.netlify.app/api", "https://dnd-aid.netlify.app/api/"
 
     resource "*",
       headers: :any,
